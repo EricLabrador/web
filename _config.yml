@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "haxor" # "air", "aqua", "contrast", "dark", "dirt", 
 
 # Site Settings
 locale                   : "en-US"
-title                    : "EricLabrador.io"
+title                    : "e1abrador.io"
 title_separator          : "-"
 name                     : "Eric Labrador"
 description              : # "Posts about security, CTFs and networking"
@@ -114,7 +114,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "EricLabrador"
+  github           : "e1abrador"
   gitlab           :
   google_plus      :
   keybase          : # "snowscan"

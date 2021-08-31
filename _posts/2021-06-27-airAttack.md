@@ -24,7 +24,7 @@ En este artículo, explicaré cada ataque que puede utilizarse en airAttack, la 
 
 La herramienta se puede descargar en:
 
-* [https://github.com/EricLabrador/airAttack](https://github.com/EricLabrador/airAttack)
+* [https://github.com/e1abrador/airAttack](https://github.com/e1abrador/airAttack)
 
 <h2> Ataques WEP </h2>
 
