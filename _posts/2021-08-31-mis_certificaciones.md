@@ -20,7 +20,7 @@ tags:
 
 ![](/assets/images/certs/eJPT.png)
 
-<h3>OSWPv3 (Offensive Security Wireless Proffesional)</h3>
+<h3>OSWPv3 (Offensive Security Wireless Professional)</h3>
 
 ![](/assets/images/certs/oswp.jpg)
 
