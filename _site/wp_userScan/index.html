@@ -1,0 +1,486 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>wp_userScan - EricLabrador.io</title>
+<meta name="description" content="En este artículo, explico la utilidad de la herramienta wp_userScan, escrita en Bash.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="EricLabrador.io">
+<meta property="og:title" content="wp_userScan">
+<meta property="og:url" content="http://localhost:4000/wp_userScan/">
+
+
+  <meta property="og:description" content="En este artículo, explico la utilidad de la herramienta wp_userScan, escrita en Bash.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/wpsUsersScan/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-08-31T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/wp_userScan/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eric Labrador",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="EricLabrador.io Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">wp_userScan</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/EricLogo.jpg" alt="Eric Labrador" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Eric Labrador</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        CyberSecurity Analyst / OSWP / eJPT
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Barcelona</span>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:e.l.s.3334@gmail.com">
+            <meta itemprop="email" content="e.l.s.3334@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/https://www.linkedin.com/in/eric-labrador-sainz-23b4b4187/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/EricLabrador" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="wp_userScan">
+    <meta itemprop="description" content="En este artículo, explico la utilidad de la herramienta wp_userScan, escrita en Bash.">
+    <meta itemprop="datePublished" content="August 31, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">wp_userScan
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2021-08-31T00:00:00+02:00">August 31, 2021 </time>&emsp;
+          
+          
+        </p>
+        <h2 id="qué-es-wps_usersscan">¿Qué es wps_usersScan?</h2>
+
+<p><strong>wps_usersScan</strong> es un pequeño script en bash ideal para realizar la enumeración de usuarios en cualquier web que utilice Wordpress como CMS.</p>
+
+<p><img src="/assets/images/wpsUsersScan/wpsusers.png" alt="" /></p>
+
+<p>Para utilizar la herramienta, es tan fácil como ejecutarla:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./wps_usersScan.sh
+</code></pre></div></div>
+
+<p>Seguidamente, saldrá un pequeño input en el cual se tiene que introducir una dirección URL. El programa concaternará de forma automática la dirección proporcionada por el usuario con el lugar donde se almacenan los usuarios de forma pública. Hay un bucle para que se ejecute del 1 a 1000, en caso que se quiera seguir enumerando, se puede alterar la cifra.</p>
+
+<h3>Código de la herramienta</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">greenColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\e</span><span class="s2">[0;32m</span><span class="se">\0</span><span class="s2">33[1m"</span>
+<span class="nv">endColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\0</span><span class="s2">33[0m</span><span class="se">\e</span><span class="s2">[0m"</span>
+<span class="nv">redColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\e</span><span class="s2">[0;31m</span><span class="se">\0</span><span class="s2">33[1m"</span>
+<span class="nv">blueColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\e</span><span class="s2">[0;34m</span><span class="se">\0</span><span class="s2">33[1m"</span>
+<span class="nv">yellowColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\e</span><span class="s2">[0;33m</span><span class="se">\0</span><span class="s2">33[1m"</span>
+<span class="nv">purpleColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\e</span><span class="s2">[0;35m</span><span class="se">\0</span><span class="s2">33[1m"</span>
+<span class="nv">turquoiseColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\e</span><span class="s2">[0;36m</span><span class="se">\0</span><span class="s2">33[1m"</span>
+<span class="nv">grayColour</span><span class="o">=</span><span class="s2">"</span><span class="se">\e</span><span class="s2">[0;37m</span><span class="se">\0</span><span class="s2">33[1m"</span>
+
+<span class="k">function </span>banner<span class="o">(){</span>
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">grayColour</span><span class="k">}</span><span class="s2">"</span>
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"__      __ _ __   ___      _   _  ___   ___  _ __  ___ / _</span><span class="se">\ </span><span class="s2"> ___  __ _  _ __  "</span> <span class="o">&amp;&amp;</span>  <span class="nb">sleep </span>0.25
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\ \ </span><span class="s2">/</span><span class="se">\ </span><span class="s2">/ /| '_ </span><span class="se">\ </span><span class="s2">/ __|    | | | |/ __| / _ </span><span class="se">\|</span><span class="s2"> '__|/ __|</span><span class="se">\ \ </span><span class="s2"> / __|/ </span><span class="se">\`</span><span class="s2"> ||</span><span class="se">\'</span><span class="s2">_ </span><span class="se">\ </span><span class="s2">"</span>
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">" </span><span class="se">\ </span><span class="s2">V  V / | |_) |</span><span class="se">\_</span><span class="s2">_ </span><span class="se">\ </span><span class="s2">   | |_| |</span><span class="se">\_</span><span class="s2">_ </span><span class="se">\|</span><span class="s2">  __/</span><span class="k">${</span><span class="nv">blueColour</span><span class="k">}</span><span class="s2">| |   </span><span class="se">\_</span><span class="s2">_ </span><span class="se">\_\ \|</span><span class="s2"> (__| (_| || | | | </span><span class="k">${</span><span class="nv">endColour</span><span class="k">}</span><span class="s2">- Created by Eric Labrador </span><span class="k">${</span><span class="nv">blueColour</span><span class="k">}</span><span class="s2">"</span> <span class="o">&amp;&amp;</span> <span class="nb">sleep </span>0.25
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"  </span><span class="se">\_</span><span class="s2">/</span><span class="se">\_</span><span class="s2">/  | .__/ |___/_____</span><span class="se">\_</span><span class="s2">_,_||___/ </span><span class="se">\_</span><span class="s2">__||_|   |___/</span><span class="se">\_</span><span class="s2">_/ </span><span class="se">\_</span><span class="s2">__|</span><span class="se">\_</span><span class="s2">_,_||_| |_|"</span> <span class="o">&amp;&amp;</span> <span class="nb">sleep </span>0.25
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"          |_|        |_____|                                                  "</span>
+	<span class="nb">echo</span> <span class="nt">-e</span>
+	<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">endColour</span><span class="k">}</span><span class="s2">"</span>
+<span class="o">}</span>
+
+
+banner
+<span class="nb">echo</span> <span class="nt">-ne</span> <span class="s2">"</span><span class="se">\n\t</span><span class="k">${</span><span class="nv">turquoiseColour</span><span class="k">}</span><span class="s2">[*]</span><span class="k">${</span><span class="nv">endColour</span><span class="k">}</span><span class="s2"> </span><span class="k">${</span><span class="nv">yellowColour</span><span class="k">}</span><span class="s2">Url:</span><span class="k">${</span><span class="nv">endColour</span><span class="k">}</span><span class="s2"> "</span> <span class="o">&amp;&amp;</span> <span class="nb">read </span>url
+<span class="k">for </span>i <span class="k">in</span> <span class="si">$(</span><span class="nb">seq </span>1 1000<span class="si">)</span><span class="p">;</span> <span class="k">do
+	</span><span class="nb">users</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$url</span><span class="s2">/wp-json/wp/v2/users/?per_page=</span><span class="nv">$i</span><span class="s2">&amp;page=</span><span class="nv">$i</span><span class="s2">"</span> | jq | <span class="nb">grep</span> <span class="s2">"name"</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">' '</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">','</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'"'</span> | <span class="nb">sed</span> <span class="s1">'s/name://g'</span><span class="si">)</span>
+	<span class="k">for </span>user <span class="k">in</span> <span class="nv">$users</span><span class="p">;</span> <span class="k">do
+		</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t\t</span><span class="k">${</span><span class="nv">redColour</span><span class="k">}</span><span class="s2">[*] - </span><span class="k">${</span><span class="nv">endColour</span><span class="k">}</span><span class="s2"> </span><span class="k">${</span><span class="nv">yellowColour</span><span class="k">}</span><span class="nv">$user</span><span class="k">${</span><span class="nv">endColour</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span>
+	<span class="k">done</span><span class="p">;</span>
+<span class="k">done</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#enumeration" class="page__taxonomy-item" rel="tag">enumeration</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#shell" class="page__taxonomy-item" rel="tag">shell</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#wordpress" class="page__taxonomy-item" rel="tag">wordpress</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#script" class="page__taxonomy-item" rel="tag">script</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-08-31T00:00:00+02:00">August 31, 2021</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/mis_certificaciones/" class="pagination--pager" title="Mis Certificaciones
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Eric Labrador</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
