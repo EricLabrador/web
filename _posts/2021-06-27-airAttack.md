@@ -18,9 +18,9 @@ tags:
 
 ![](/assets/images/airAttack/AIR-ATTACK-Header.jpg)
 
-**airAttack** es una herramienta ofensiva para automatizar los ataques a redes inalámbricas escrita en bash. Esta herramienta será mejorada por mi próximamente para para optimizar determiandas porciones de código. Los ataques de denegación de servicio así como nuevas funciones serán añadidas. Este programa lo escribí cuando estaba estudiando para el OSWP (Offensive Security Wireless Professional).
+**airAttack** es una herramienta ofensiva para automatizar los ataques a redes inalámbricas escrita en bash. Esta herramienta será mejorada por mi próximamente para para optimizar determinadas porciones de código. Los ataques de denegación de servicio así como nuevas funciones serán añadidas. Este programa lo escribí cuando estaba estudiando para el OSWP (Offensive Security Wireless Professional).
 
-En este artículo, explicaré cada ataque que puede utilizarse en airAttack, la finalidad de dicho ataque y como ejecutarlo.
+En este artículo, explicaré cada ataque que puede utilizarse en airAttack, la finalidad y como ejecutarlo manualmente.
 
 La herramienta se puede descargar en:
 
