@@ -4,11 +4,11 @@ var store = [{
         "tags": ["shell","wireless","aircrack-ng","wireless_pentesting"],
         "url": "http://localhost:4000/airAttack/",
         "teaser":"http://localhost:4000/assets/images/airAttack/airAttack.jpg"},{
-        "title": "Mis Certificaciones",
-        "excerpt":"Este artículo va orientado a enseñar paso a paso como un atacante puede ganar acceso total a un dispositivo android, acceso total me refiero des de poder ver el registro de llamadas a poder sacar fotos con las cámaras del teléfono móvil. ngrok Ngrok nos permite exponer a internet una...","categories": ["android"],
-        "tags": ["Malware"],
-        "url": "http://localhost:4000/android_shell_/",
-        "teaser":null},{
+        "title": "Denial Of Service",
+        "excerpt":"¿Qué es un ataque de Denegación de servicio? El ataque de Denegación de Servicio consiste en inundar de solicitudes un servicio o red para dejarlo inhabilitado contra los usuarios legítimos. En este artículo hablaremos de 2 tipos de ataques: DoS y DDoS. DoS El ataque DoS és un tipo de...","categories": ["dos"],
+        "tags": [],
+        "url": "http://localhost:4000/ddos/",
+        "teaser":"http://localhost:4000/assets/images/dos/logo.jpg"},{
         "title": "Mis Certificaciones",
         "excerpt":"Mis certificaciones   eJPT (eLearnSecurity Junior Penetration Tester)      OSWPv3 (Offensive Security Wireless Professional)      ","categories": ["script"],
         "tags": ["Offensive-Security","OSWP","eLearnSecurity","eJPT"],
