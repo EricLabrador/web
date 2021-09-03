@@ -108,10 +108,10 @@ author:
   email            : "e.l.s.3334@gmail.com"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
-  bitbucket        :
+  bitbucket        : 
   codepen          :
   dribbble         :
-  flickr           :
+  flickr           : 
   facebook         :
   foursquare       :
   github           : "e1abrador"
@@ -120,7 +120,7 @@ author:
   keybase          : # "snowscan"
   instagram        :
   lastfm           :
-  linkedin         : https://www.linkedin.com/in/ericlabrador/
+  linkedin         : ericlabrador/
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
@@ -131,7 +131,6 @@ author:
   weibo            :
   xing             :
   youtube          : # "https://youtube.com/c/MichaelRoseDesign"
-
 
 # Reading Files
 include:

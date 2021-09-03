@@ -257,6 +257,15 @@
         </li>
       {% endif %}
 
+      {% if author.codepen %}
+        <li>
+          <a href="https://hackthebox.eu/profile/{{ author.codepen }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-codepen" aria-hidden="true"></i> hackthebox
+          </a>
+        </li>
+      {% endif %}
+
+
       {% if author.vine %}
         <li>
           <a href="https://vine.co/u/{{ author.vine }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
@@ -264,6 +273,8 @@
           </a>
         </li>
       {% endif %}
+
+
 
       {% include author-profile-custom-links.html %}
     </ul>

