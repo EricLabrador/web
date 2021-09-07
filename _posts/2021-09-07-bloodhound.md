@@ -130,7 +130,7 @@ En este caso, se generarán los archivos sin estar comprimidos. Los archivos gen
 * 123456_users.json
 * 123456_groups.json
 
-En este punto el proceso es igual que con el archivo .zip comentado anteriormente, la idea sería arrastrar los archivos a bloodhound y funconaría de la misma manera.
+En este punto el proceso es igual que con el archivo .zip comentado anteriormente, la idea sería arrastrar los archivos a bloodhound y funcionaría de la misma manera.
 
 <h2>Como limpiar la base de datos</h2>
 
