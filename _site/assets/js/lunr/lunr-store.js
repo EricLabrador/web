@@ -16,11 +16,11 @@ var store = [{
         "teaser":"http://localhost:4000/assets/images/wpsUsersScan/logo.png"},{
         "title": "Denial Of Service",
         "excerpt":"¿Qué es un ataque de Denegación de servicio? El ataque de Denegación de Servicio consiste en inundar de solicitudes un servicio o red para dejarlo inhabilitado contra los usuarios legítimos. En este artículo hablaremos de 2 tipos de ataques: DoS y DDoS. DoS El ataque DoS és un tipo de...","categories": ["dos"],
-        "tags": [],
+        "tags": ["Denial of Service"],
         "url": "http://localhost:4000/ddos/",
         "teaser":"http://localhost:4000/assets/images/dos/logo.jpg"},{
         "title": "BloodHound",
-        "excerpt":"¿Qué es BloodHound? BloodHound es una herramienta enfocada en la enumeración de Active Directory. BloodHound ayuda a los atacantes a identificar rutas de ataque altamente complejas que de otra forma sería mas complicado visualizar. Esta herramienta es muy útil, ya que representa de forma gráfica los resultados, se utiliza tanto...","categories": ["Windows","Active_Directory"],
-        "tags": [],
+        "excerpt":"¿Qué es BloodHound? BloodHound es una herramienta enfocada en la enumeración de Active Directory. BloodHound ayuda a los atacantes a identificar rutas de ataque altamente complejas que de otra forma sería mas complicado visualizar. Esta herramienta es muy útil, ya que representa de forma gráfica los resultados, se utiliza tanto...","categories": ["Windows"],
+        "tags": ["BloodHound","Domain Controller","Active Directory"],
         "url": "http://localhost:4000/bloodhound/",
         "teaser":"http://localhost:4000/assets/images/bloodhound/logo.png"}]

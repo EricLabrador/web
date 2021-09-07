@@ -9,7 +9,10 @@ header:
   teaser_home_page: true
 categories:
   - Windows
-  - Active_Directory
+tags:
+  - BloodHound
+  - Domain Controller
+  - Active Directory
 ---
 ## ¿Qué es BloodHound?
 
