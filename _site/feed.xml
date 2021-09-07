@@ -1,4 +1,202 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-06T09:37:56+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">airAttack</title><link href="http://localhost:4000/airAttack/" rel="alternate" type="text/html" title="airAttack" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/airAttack</id><content type="html" xml:base="http://localhost:4000/airAttack/">&lt;p&gt;&lt;img src=&quot;/assets/images/airAttack/AIR-ATTACK-Header.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-07T15:47:06+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">BloodHound</title><link href="http://localhost:4000/bloodhound/" rel="alternate" type="text/html" title="BloodHound" /><published>2021-09-07T00:00:00+02:00</published><updated>2021-09-07T00:00:00+02:00</updated><id>http://localhost:4000/bloodhound</id><content type="html" xml:base="http://localhost:4000/bloodhound/">&lt;h2 id=&quot;qué-es-bloodhound&quot;&gt;¿Qué es BloodHound?&lt;/h2&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/bloodhound/bh.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;BloodHound es una herramienta enfocada en la enumeración de Active Directory. BloodHound ayuda a los atacantes a identificar rutas de ataque altamente complejas que de otra forma sería mas complicado visualizar. Esta herramienta es muy útil, ya que representa de forma gráfica los resultados, se utiliza tanto para “red team” como para “blue team”, ya que a fin de cuentas, sirve para enumerar vectores de ataque/vulnerabilidades en un Controlador de Dominio.&lt;/p&gt;
+
+&lt;h2&gt;Instalación de la base de datos&lt;/h2&gt;
+
+&lt;p&gt;Para el uso de BloodHound, es necesario disponer de la base de datos neo4j. Para una instalación rápida:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;neo4j
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Cuando esté instalada, se tiene que iniciar:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;neo4j start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Con esto, nos abrirá un servidor http que será accesible des del navegador web. Tendremos que loggearnos y crear un nuevo usuario/contraseña.&lt;/p&gt;
+
+&lt;h2&gt;Instalación de BloodHound&lt;/h2&gt;
+
+&lt;p&gt;Para utilizar BloodHound, recomiendo utilizarlo descargando el binario, pero se puede instalar también:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bloodhound
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;La forma de utilizarlo sin necesidad de instalarlo es descargarlo:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-linux-x64.zip&quot;&gt;https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-linux-x64.zip&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Con el siguiente comando, debería funcionar sin problemas:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./bloodhound &lt;span class=&quot;nt&quot;&gt;--no-sandbox&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora que ya tenemos preparada la base de datos, tenemos que utilizar el recurso llamado SharpHound.exe, este script, en el sistema, realizará la enumeración de forma automática:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BloodHoundAD/BloodHound/tree/master/Collectors&quot;&gt;https://github.com/BloodHoundAD/BloodHound/tree/master/Collectors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;C:\Windows\Temp\test&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;\SharpHound.exe&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;----------------------------------------------&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Initializing&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SharpHound&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;14:06&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;07/09/2021&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;----------------------------------------------&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Resolved&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Collection&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Methods:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Sessions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;LoggedOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Trusts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ACL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ObjectProps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;LocalGroups&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SPNTargets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Container&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Creating&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SI4CORP.LOCAL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;using&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;Configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;si4corp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Cache&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;not&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Found:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Objects&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pre-populating&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Domain&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Controller&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SIDS&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Status:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;finished&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;Using&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MB&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;RAM&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Status:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;62&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;finished&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;62&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;/s&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Using&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MB&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;RAM&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Enumeration&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;finished&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;00:00:00.3215783&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Compressing&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;\20210907140603_BloodHound.zip&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;You&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;can&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;directly&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;UI&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SharpHound&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Enumeration&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Completed&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;at&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;14:06&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;07/09/2021&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Happy&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Graphing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Como vemos, se ha generado el archivo “20210907140603_BloodHound.zip”, este archivo lo tendremos que transferir a nuestra máquina atacante y arrastrar el archivo en bloodhound:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/bloodhound/blood.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Como utilizar BloodHound?&lt;/h2&gt;
+
+&lt;p&gt;Cuando haya cargado, tendremos varias opciones de listar el sistema, para este ejemplo, he puesto la que más contenido salía (shortest path to high value targets).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/bloodhound/grafico.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;En BloodHound, tendremos la posibilidad de indicarle al programa con que usuarios tenemos acceso al sistema y, a través de dicho usuario, como poder escalar privilegios, por ejemplo, si estamos en el caso que tenemos acceso a un usuario (ej: e1abrador) y queremos ver si estamos en algún grupo el cual sea vulnerable a la escalada de privilegios, lo podemos hacer de la siguiente manera:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;El primer paso sería marcar el usuario e1abrador como &lt;b&gt;owned&lt;/b&gt; (click derecho en el usuario y “Mark user as Owned”).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;El siguiente paso sería buscar el grupo que queremos utilizar para realizar la escalada de privilegios, en este caso, “Account Operators”, y marcarlo “Mark user as Owned”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finalmente, buscamos el grupo objetivo, que normalmente es “Domain Admins”, le daremos a click derecho y “Shortest path to here from owned”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hecho esto, se nos abrirá un gráfico y nos indicará como explotar cada grupo para ir elevando privilegios.&lt;/p&gt;
+
+&lt;p&gt;Lo que comentaba en el paso anterior, BloodHound tiene un panel el cual incorpora como abusar de ese privilegio para ganar acceso como Administrador.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;760&quot; height=&quot;500&quot; src=&quot;/assets/images/bloodhound/generic_all.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Salen también las referiencias para explotar esa vulnerabilidad y las referencias por si se necesita mas información sobre dicha vulnerabilidad.&lt;/p&gt;
+
+&lt;h2&gt;Python3 Bloodhound&lt;/h2&gt;
+
+&lt;p&gt;En caso de tener credenciales válidas a nivel de sistema pero no tener acceso directo (por ejemplo con winrm), podremos utilizar la utilidad escrita en python3 de bloodhound. Con esta utilidad, no hace falta tener acceso al sistema, simplemente, con tener credenciales válidas, se podrá realizar la enumeración.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 bloodhound.py &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;username&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; e1abrador.local &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En este caso, se generarán los archivos sin estar comprimidos. Los archivos generados deberían llamarse:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;123456_domains.json&lt;/li&gt;
+  &lt;li&gt;123456_computers.json&lt;/li&gt;
+  &lt;li&gt;123456_users.json&lt;/li&gt;
+  &lt;li&gt;123456_groups.json&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;En este punto el proceso es igual que con el archivo .zip comentado anteriormente, la idea sería arrastrar los archivos a bloodhound y funconaría de la misma manera.&lt;/p&gt;
+
+&lt;h2&gt;Como limpiar la base de datos&lt;/h2&gt;
+
+&lt;p&gt;Esta pregunta la he visto mucho por las comunidades y los posts online, es bastante sencillo, si vamos a realizar una nueva enumeración, para dejar todo limpio de datos, lo podemos hacer de la siguiente manera:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;660&quot; height=&quot;500&quot; src=&quot;/assets/images/bloodhound/db.png&quot; /&gt;
+&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="Windows" /><category term="Active_Directory" /><summary type="html">En este artículo, explico que es BloodHound y como utilizarlo en entornos de Active Directory.</summary></entry><entry><title type="html">Denial Of Service</title><link href="http://localhost:4000/ddos/" rel="alternate" type="text/html" title="Denial Of Service" /><published>2021-09-03T00:00:00+02:00</published><updated>2021-09-03T00:00:00+02:00</updated><id>http://localhost:4000/ddos</id><content type="html" xml:base="http://localhost:4000/ddos/">&lt;h2 id=&quot;qué-es-un-ataque-de-denegación-de-servicio&quot;&gt;¿Qué es un ataque de Denegación de servicio?&lt;/h2&gt;
+
+&lt;p&gt;El ataque de &lt;strong&gt;Denegación de Servicio&lt;/strong&gt; consiste en inundar de solicitudes un servicio o red para dejarlo inhabilitado contra los usuarios legítimos.&lt;/p&gt;
+
+&lt;p&gt;En este artículo hablaremos de 2 tipos de ataques: &lt;strong&gt;DoS&lt;/strong&gt; y &lt;strong&gt;DDoS&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2&gt;&lt;b&gt;DoS&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;El ataque DoS és un tipo de ataque (de los muchos que hay) de Denegación de Servicio, en este ataque las peticiones al servidor se ejecutan desde un único ordenador. En caso que el servidor objetivo cuente con algún firewall medianamente bien configurado, en el instante que se envíen X número de peticiones, la IP se bloqueará. Además, para que salga bien, el ordenador atacante tiene que contar con buenos componentes para poder añadir mas “threads” al programa y que se envíen mas peticiones por segundo al servidor.&lt;/p&gt;
+
+&lt;h2&gt;&lt;b&gt;DDoS&lt;/b&gt;&lt;/h2&gt;
+
+&lt;p&gt;El ataque de DDoS és también un ataque de denegación de servicio, en este caso, las peticiones se envían desde diferentes ordenadores a lo largo de la ciudad/país/continente/mundo, para hacer esto, el atacante hace uso de una BotNet.&lt;/p&gt;
+
+&lt;h3&gt;&lt;b&gt;BotNet&lt;/b&gt;&lt;/h3&gt;
+
+&lt;p&gt;Una &lt;strong&gt;BotNet&lt;/strong&gt; es un conjunto de ordenadores que han sido infectados por un malware y son controlados de forma remota por un atacante, estos ordenadores se conocen también como “Ordenadores Zombies”.
+Cuando el atacante crea conveniente, utiliza todos los ordenadores infectados y lanza peticiones a un servidor. De esta forma, dado que las peticiones suelen venir de diferentes IP’s, al servidor se le hace imposible gestionar tantas requests, ya que por mas que se bloquee una IP, seguirán habiendo muchas peticiones por leer por parte del los bots. Cuantos mas ordenadores tenga controlado el atacante, serán mas altas las probabilidades de tumbar el servidor.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; En este artículo no explicaré como hacer una BotNet, ya que no dispongo de tales ordenadores como para hacerlo, y evidentemente, no lo haré de forma ilegal.&lt;/p&gt;
+
+&lt;h2&gt;Como se hace este ataque?&lt;/h2&gt;
+
+&lt;p&gt;Hay muchos programas para utilizar, yo para este ejemplo, utilizaré LOIC (Low Orbit Ion Cannon), es un programa que se utiliza por los Administradores de Sistema para “estresar” un servidor web enviando un gran número de peticiones, de esta forma, el Administrador se puede hacer una idea de cuantos clientes pueden visitar una web sin que esta se colapse, este progrma se puede utilizar de forma “lícita” o de forma ilegal, yo, para evitar problemas legales, el “Proof of Concept” lo haré con un servidor web local.&lt;/p&gt;
+
+&lt;p&gt;LOIC lo utilizaré en una máquina virtual windows (windows 10), dejo el enlace de descarga:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sourceforge.net/projects/loic/&quot;&gt;https://sourceforge.net/projects/loic/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Especificaciones de la máquina virtual Windows 10&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;RAM -&amp;gt; &lt;strong&gt;6000 MB&lt;/strong&gt; (6GB)&lt;/li&gt;
+  &lt;li&gt;Procesadores -&amp;gt; &lt;strong&gt;8&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Espacio en Disco Duro -&amp;gt; &lt;strong&gt;100 GB&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Como servidor web, utilizaré un servidor apache normal, el host será una máquina kali.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Especificaciones de la máquina virtual Kali Linux&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;RAM -&amp;gt; &lt;strong&gt;5000 MB&lt;/strong&gt; (5GB)&lt;/li&gt;
+  &lt;li&gt;Procesadores -&amp;gt; &lt;strong&gt;4&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Espacio en Disco Duro -&amp;gt; &lt;strong&gt;80 GB&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Vamos a empezar con el “Overview” en la máquina Windows. Vemos que los paquetes ICMP no tardan mas de 1ms, esto es normal dado que estamos en una red local:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/dos/icmp_requests.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora, vamos a ver que tal se comporta el servidor cuando inciamos el LOIC.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/dos/LOIC_started.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hay que tener en cuenta que la configuración de componentes de las 2 máquinas es desigual, ya que la máquina Windows cuenta con 8 procesadores y 6 GB de RAM y la máquina Kali cuenta con 5 GB y 4 procesadores. Igualmente, en la imagen, se puede comprobar que ha habido momentos en los que el servidor no respondía, en este caso, como es una máquina virtual, no le he podido poner mas “threads” (cuantos mas se pongan, mas alta será la posibilidad de tumbar la web). Si le poneis mejores especificaciones a la MV podréis probarlo mas “a lo grande”.&lt;/p&gt;
+
+&lt;p&gt;Ahora, vamos a ver que ha pasado por detrás en los logs del apache. La ruta en Linux es “/var/log/apache2/access.log”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/dos/connections_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/dos/a_cat.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Podemos ver que hay momentos en los que el servidor no ha podido capturar todas las requests, estos mensajes de “A cat is fine too” han salido ya que es el mensaje que envía LOIC al servidor de forma continua. La parte que no cargaba la web eran momentos puntuales por lo que he comentado antes, no són máquinas con grandes especificaciones y para tumbar una web se necesitas mejores componentes en el PC.&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="dos" /><summary type="html">En este artículo, explico la diferencia entre un ataque Dos y DDoS y como ejecutar un ataque DoS con un ejemplo básico.</summary></entry><entry><title type="html">airAttack</title><link href="http://localhost:4000/airAttack/" rel="alternate" type="text/html" title="airAttack" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/airAttack</id><content type="html" xml:base="http://localhost:4000/airAttack/">&lt;p&gt;&lt;img src=&quot;/assets/images/airAttack/AIR-ATTACK-Header.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;airAttack&lt;/strong&gt; es una herramienta ofensiva para automatizar los ataques a redes inalámbricas escrita en bash. Esta herramienta será mejorada por mi próximamente para para optimizar determinadas porciones de código. Los ataques de denegación de servicio así como nuevas funciones serán añadidas. Este programa lo escribí cuando estaba estudiando para el OSWP (Offensive Security Wireless Professional).&lt;/p&gt;
 
@@ -84,72 +282,7 @@ aireplay-ng &lt;span class=&quot;nt&quot;&gt;-0&lt;/span&gt; 15 &lt;span class=&
 aircrack-ng &lt;span class=&quot;nt&quot;&gt;-J&lt;/span&gt; miCaptura captura.cap
 hccap2john miCaptura.hccap &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hash
 &lt;/span&gt;john &lt;span class=&quot;nt&quot;&gt;--wordlist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;rockyou.txt &lt;span class=&quot;nb&quot;&gt;hash&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="shell" /><category term="wireless" /><category term="aircrack-ng" /><category term="wireless_pentesting" /><summary type="html">En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.</summary></entry><entry><title type="html">Denial Of Service</title><link href="http://localhost:4000/ddos/" rel="alternate" type="text/html" title="Denial Of Service" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/ddos</id><content type="html" xml:base="http://localhost:4000/ddos/">&lt;h2 id=&quot;qué-es-un-ataque-de-denegación-de-servicio&quot;&gt;¿Qué es un ataque de Denegación de servicio?&lt;/h2&gt;
-
-&lt;p&gt;El ataque de &lt;strong&gt;Denegación de Servicio&lt;/strong&gt; consiste en inundar de solicitudes un servicio o red para dejarlo inhabilitado contra los usuarios legítimos.&lt;/p&gt;
-
-&lt;p&gt;En este artículo hablaremos de 2 tipos de ataques: &lt;strong&gt;DoS&lt;/strong&gt; y &lt;strong&gt;DDoS&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2&gt;&lt;b&gt;DoS&lt;/b&gt;&lt;/h2&gt;
-
-&lt;p&gt;El ataque DoS és un tipo de ataque (de los muchos que hay) de Denegación de Servicio, en este ataque las peticiones al servidor se ejecutan desde un único ordenador. En caso que el servidor objetivo cuente con algún firewall medianamente bien configurado, en el instante que se envíen X número de peticiones, la IP se bloqueará. Además, para que salga bien, el ordenador atacante tiene que contar con buenos componentes para poder añadir mas “threads” al programa y que se envíen mas peticiones por segundo al servidor.&lt;/p&gt;
-
-&lt;h2&gt;&lt;b&gt;DDoS&lt;/b&gt;&lt;/h2&gt;
-
-&lt;p&gt;El ataque de DDoS és también un ataque de denegación de servicio, en este caso, las peticiones se envían desde diferentes ordenadores a lo largo de la ciudad/país/continente/mundo, para hacer esto, el atacante hace uso de una BotNet.&lt;/p&gt;
-
-&lt;h3&gt;&lt;b&gt;BotNet&lt;/b&gt;&lt;/h3&gt;
-
-&lt;p&gt;Una &lt;strong&gt;BotNet&lt;/strong&gt; es un conjunto de ordenadores que han sido infectados por un malware y son controlados de forma remota por un atacante, estos ordenadores se conocen también como “Ordenadores Zombies”.
-Cuando el atacante crea conveniente, utiliza todos los ordenadores infectados y lanza peticiones a un servidor. De esta forma, dado que las peticiones suelen venir de diferentes IP’s, al servidor se le hace imposible gestionar tantas requests, ya que por mas que se bloquee una IP, seguirán habiendo muchas peticiones por leer por parte del los bots. Cuantos mas ordenadores tenga controlado el atacante, serán mas altas las probabilidades de tumbar el servidor.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Nota:&lt;/strong&gt; En este artículo no explicaré como hacer una BotNet, ya que no dispongo de tales ordenadores como para hacerlo, y evidentemente, no lo haré de forma ilegal.&lt;/p&gt;
-
-&lt;h2&gt;Como se hace este ataque?&lt;/h2&gt;
-
-&lt;p&gt;Hay muchos programas para utilizar, yo para este ejemplo, utilizaré LOIC (Low Orbit Ion Cannon), es un programa que se utiliza por los Administradores de Sistema para “estresar” un servidor web enviando un gran número de peticiones, de esta forma, el Administrador se puede hacer una idea de cuantos clientes pueden visitar una web sin que esta se colapse, este progrma se puede utilizar de forma “lícita” o de forma ilegal, yo, para evitar problemas legales, el “Proof of Concept” lo haré con un servidor web local.&lt;/p&gt;
-
-&lt;p&gt;LOIC lo utilizaré en una máquina virtual windows (windows 10), dejo el enlace de descarga:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://sourceforge.net/projects/loic/&quot;&gt;https://sourceforge.net/projects/loic/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Especificaciones de la máquina virtual Windows 10&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;RAM -&amp;gt; &lt;strong&gt;6000 MB&lt;/strong&gt; (6GB)&lt;/li&gt;
-  &lt;li&gt;Procesadores -&amp;gt; &lt;strong&gt;8&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Espacio en Disco Duro -&amp;gt; &lt;strong&gt;100 GB&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Como servidor web, utilizaré un servidor apache normal, el host será una máquina kali.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Especificaciones de la máquina virtual Kali Linux&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;RAM -&amp;gt; &lt;strong&gt;5000 MB&lt;/strong&gt; (5GB)&lt;/li&gt;
-  &lt;li&gt;Procesadores -&amp;gt; &lt;strong&gt;4&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Espacio en Disco Duro -&amp;gt; &lt;strong&gt;80 GB&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Vamos a empezar con el “Overview” en la máquina Windows. Vemos que los paquetes ICMP no tardan mas de 1ms, esto es normal dado que estamos en una red local:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/dos/icmp_requests.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Ahora, vamos a ver que tal se comporta el servidor cuando inciamos el LOIC.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/dos/LOIC_started.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hay que tener en cuenta que la configuración de componentes de las 2 máquinas es desigual, ya que la máquina Windows cuenta con 8 procesadores y 6 GB de RAM y la máquina Kali cuenta con 5 GB y 4 procesadores. Igualmente, en la imagen, se puede comprobar que ha habido momentos en los que el servidor no respondía, en este caso, como es una máquina virtual, no le he podido poner mas “threads” (cuantos mas se pongan, mas alta será la posibilidad de tumbar la web). Si le poneis mejores especificaciones a la MV podréis probarlo mas “a lo grande”.&lt;/p&gt;
-
-&lt;p&gt;Ahora, vamos a ver que ha pasado por detrás en los logs del apache. La ruta en Linux es “/var/log/apache2/access.log”.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/dos/connections_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/dos/a_cat.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Podemos ver que hay momentos en los que el servidor no ha podido capturar todas las requests, estos mensajes de “A cat is fine too” han salido ya que es el mensaje que envía LOIC al servidor de forma continua. La parte que no cargaba la web eran momentos puntuales por lo que he comentado antes, no són máquinas con grandes especificaciones y para tumbar una web se necesitas mejores componentes en el PC.&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="dos" /><summary type="html">En este artículo, explico la diferencia entre un ataque Dos y DDoS y como ejecutar un ataque DoS con un ejemplo básico.</summary></entry><entry><title type="html">Mis Certificaciones</title><link href="http://localhost:4000/mis_certificaciones/" rel="alternate" type="text/html" title="Mis Certificaciones" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/mis_certificaciones</id><content type="html" xml:base="http://localhost:4000/mis_certificaciones/">&lt;p&gt;&lt;strong&gt;Mis certificaciones&lt;/strong&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="shell" /><category term="wireless" /><category term="aircrack-ng" /><category term="wireless_pentesting" /><summary type="html">En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.</summary></entry><entry><title type="html">Mis Certificaciones</title><link href="http://localhost:4000/mis_certificaciones/" rel="alternate" type="text/html" title="Mis Certificaciones" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/mis_certificaciones</id><content type="html" xml:base="http://localhost:4000/mis_certificaciones/">&lt;p&gt;&lt;strong&gt;Mis certificaciones&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h3&gt;eJPT (eLearnSecurity Junior Penetration Tester)&lt;/h3&gt;
 

@@ -1,0 +1,560 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>BloodHound - e1abrador.io</title>
+<meta name="description" content="En este artículo, explico que es BloodHound y como utilizarlo en entornos de Active Directory.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="e1abrador.io">
+<meta property="og:title" content="BloodHound">
+<meta property="og:url" content="http://localhost:4000/bloodhound/">
+
+
+  <meta property="og:description" content="En este artículo, explico que es BloodHound y como utilizarlo en entornos de Active Directory.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/bloodhound/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-09-07T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/bloodhound/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eric Labrador",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="e1abrador.io Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">BloodHound</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/EricLogo.jpg" alt="Eric Labrador" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Eric Labrador</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        CyberSecurity Analyst / OSWP / eJPT
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Barcelona</span>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:e.l.s.3334@gmail.com">
+            <meta itemprop="email" content="e.l.s.3334@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/ericlabrador/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/e1abrador" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://hackthebox.eu/profile/279473/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-codepen" aria-hidden="true"></i> hackthebox
+          </a>
+        </li>
+      
+
+
+      
+
+
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="BloodHound">
+    <meta itemprop="description" content="En este artículo, explico que es BloodHound y como utilizarlo en entornos de Active Directory.">
+    <meta itemprop="datePublished" content="September 07, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">BloodHound
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2021-09-07T00:00:00+02:00">September 07, 2021 </time>&emsp;
+          
+          
+        </p>
+        <h2 id="qué-es-bloodhound">¿Qué es BloodHound?</h2>
+
+<p align="center">
+  <img width="960" height="700" src="/assets/images/bloodhound/bh.png" />
+</p>
+
+<p>BloodHound es una herramienta enfocada en la enumeración de Active Directory. BloodHound ayuda a los atacantes a identificar rutas de ataque altamente complejas que de otra forma sería mas complicado visualizar. Esta herramienta es muy útil, ya que representa de forma gráfica los resultados, se utiliza tanto para “red team” como para “blue team”, ya que a fin de cuentas, sirve para enumerar vectores de ataque/vulnerabilidades en un Controlador de Dominio.</p>
+
+<h2>Instalación de la base de datos</h2>
+
+<p>Para el uso de BloodHound, es necesario disponer de la base de datos neo4j. Para una instalación rápida:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update <span class="o">&amp;&amp;</span> apt <span class="nb">install </span>neo4j
+</code></pre></div></div>
+
+<p>Cuando esté instalada, se tiene que iniciar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>neo4j start
+</code></pre></div></div>
+
+<p>Con esto, nos abrirá un servidor http que será accesible des del navegador web. Tendremos que loggearnos y crear un nuevo usuario/contraseña.</p>
+
+<h2>Instalación de BloodHound</h2>
+
+<p>Para utilizar BloodHound, recomiendo utilizarlo descargando el binario, pero se puede instalar también:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update <span class="o">&amp;&amp;</span> apt <span class="nb">install </span>bloodhound
+</code></pre></div></div>
+<p>La forma de utilizarlo sin necesidad de instalarlo es descargarlo:</p>
+
+<ul>
+  <li><a href="https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-linux-x64.zip">https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-linux-x64.zip</a></li>
+</ul>
+
+<p>Con el siguiente comando, debería funcionar sin problemas:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bloodhound <span class="nt">--no-sandbox</span>
+</code></pre></div></div>
+
+<p>Ahora que ya tenemos preparada la base de datos, tenemos que utilizar el recurso llamado SharpHound.exe, este script, en el sistema, realizará la enumeración de forma automática:</p>
+
+<ul>
+  <li><a href="https://github.com/BloodHoundAD/BloodHound/tree/master/Collectors">https://github.com/BloodHoundAD/BloodHound/tree/master/Collectors</a></li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">C:\Windows\Temp\test</span><span class="err">&gt;</span><span class="o">.</span><span class="nx">\SharpHound.exe</span><span class="w"> </span><span class="nt">-c</span><span class="w"> </span><span class="nx">all</span><span class="w">
+
+</span><span class="o">----------------------------------------------</span><span class="w">
+
+</span><span class="n">Initializing</span><span class="w"> </span><span class="nx">SharpHound</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">14:06</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">07/09/2021</span><span class="w">
+
+</span><span class="o">----------------------------------------------</span><span class="w">
+
+</span><span class="n">Resolved</span><span class="w"> </span><span class="nx">Collection</span><span class="w"> </span><span class="nx">Methods:</span><span class="w"> </span><span class="nx">Group</span><span class="p">,</span><span class="w"> </span><span class="nx">Sessions</span><span class="p">,</span><span class="w"> </span><span class="nx">LoggedOn</span><span class="p">,</span><span class="w"> </span><span class="nx">Trusts</span><span class="p">,</span><span class="w"> </span><span class="nx">ACL</span><span class="p">,</span><span class="w"> </span><span class="nx">ObjectProps</span><span class="p">,</span><span class="w"> </span><span class="nx">LocalGroups</span><span class="p">,</span><span class="w"> </span><span class="nx">SPNTargets</span><span class="p">,</span><span class="w"> </span><span class="nx">Container</span><span class="w">
+
+</span><span class="p">[</span><span class="o">+</span><span class="p">]</span><span class="w"> </span><span class="n">Creating</span><span class="w"> </span><span class="nx">Schema</span><span class="w"> </span><span class="nx">map</span><span class="w"> </span><span class="nx">for</span><span class="w"> </span><span class="nx">domain</span><span class="w"> </span><span class="nx">SI4CORP.LOCAL</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="nx">CN</span><span class="o">=</span><span class="n">Schema</span><span class="p">,</span><span class="nx">CN</span><span class="o">=</span><span class="kr">Configuration</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">si4corp</span><span class="p">,</span><span class="nx">DC</span><span class="o">=</span><span class="n">local</span><span class="w">
+
+</span><span class="p">[</span><span class="o">+</span><span class="p">]</span><span class="w"> </span><span class="n">Cache</span><span class="w"> </span><span class="nx">File</span><span class="w"> </span><span class="nx">not</span><span class="w"> </span><span class="nx">Found:</span><span class="w"> </span><span class="nx">0</span><span class="w"> </span><span class="nx">Objects</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">cache</span><span class="w">
+
+</span><span class="p">[</span><span class="o">+</span><span class="p">]</span><span class="w"> </span><span class="n">Pre-populating</span><span class="w"> </span><span class="nx">Domain</span><span class="w"> </span><span class="nx">Controller</span><span class="w"> </span><span class="nx">SIDS</span><span class="w">
+
+</span><span class="n">Status:</span><span class="w"> </span><span class="nx">0</span><span class="w"> </span><span class="nx">objects</span><span class="w"> </span><span class="nx">finished</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="kr">Using</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="n">MB</span><span class="w"> </span><span class="nx">RAM</span><span class="w">
+
+</span><span class="n">Status:</span><span class="w"> </span><span class="nx">62</span><span class="w"> </span><span class="nx">objects</span><span class="w"> </span><span class="nx">finished</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="mi">62</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="n">/s</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="nx">Using</span><span class="w"> </span><span class="nx">26</span><span class="w"> </span><span class="nx">MB</span><span class="w"> </span><span class="nx">RAM</span><span class="w">
+
+</span><span class="n">Enumeration</span><span class="w"> </span><span class="nx">finished</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">00:00:00.3215783</span><span class="w">
+
+</span><span class="n">Compressing</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="o">.</span><span class="nx">\20210907140603_BloodHound.zip</span><span class="w">
+
+</span><span class="n">You</span><span class="w"> </span><span class="nx">can</span><span class="w"> </span><span class="nx">upload</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="nx">directly</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">UI</span><span class="w">
+
+
+</span><span class="n">SharpHound</span><span class="w"> </span><span class="nx">Enumeration</span><span class="w"> </span><span class="nx">Completed</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">14:06</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">07/09/2021</span><span class="o">!</span><span class="w"> </span><span class="nx">Happy</span><span class="w"> </span><span class="nx">Graphing</span><span class="o">!</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Como vemos, se ha generado el archivo “20210907140603_BloodHound.zip”, este archivo lo tendremos que transferir a nuestra máquina atacante y arrastrar el archivo en bloodhound:</p>
+
+<p><img src="/assets/images/bloodhound/blood.png" alt="" /></p>
+
+<h2>Como utilizar BloodHound?</h2>
+
+<p>Cuando haya cargado, tendremos varias opciones de listar el sistema, para este ejemplo, he puesto la que más contenido salía (shortest path to high value targets).</p>
+
+<p><img src="/assets/images/bloodhound/grafico.png" alt="" /></p>
+
+<p>En BloodHound, tendremos la posibilidad de indicarle al programa con que usuarios tenemos acceso al sistema y, a través de dicho usuario, como poder escalar privilegios, por ejemplo, si estamos en el caso que tenemos acceso a un usuario (ej: e1abrador) y queremos ver si estamos en algún grupo el cual sea vulnerable a la escalada de privilegios, lo podemos hacer de la siguiente manera:</p>
+
+<ul>
+  <li>
+    <p>El primer paso sería marcar el usuario e1abrador como <b>owned</b> (click derecho en el usuario y “Mark user as Owned”).</p>
+  </li>
+  <li>
+    <p>El siguiente paso sería buscar el grupo que queremos utilizar para realizar la escalada de privilegios, en este caso, “Account Operators”, y marcarlo “Mark user as Owned”</p>
+  </li>
+  <li>
+    <p>Finalmente, buscamos el grupo objetivo, que normalmente es “Domain Admins”, le daremos a click derecho y “Shortest path to here from owned”</p>
+  </li>
+</ul>
+
+<p>Hecho esto, se nos abrirá un gráfico y nos indicará como explotar cada grupo para ir elevando privilegios.</p>
+
+<p>Lo que comentaba en el paso anterior, BloodHound tiene un panel el cual incorpora como abusar de ese privilegio para ganar acceso como Administrador.</p>
+
+<p align="center">
+  <img width="760" height="500" src="/assets/images/bloodhound/generic_all.png" />
+</p>
+
+<p>Salen también las referiencias para explotar esa vulnerabilidad y las referencias por si se necesita mas información sobre dicha vulnerabilidad.</p>
+
+<h2>Python3 Bloodhound</h2>
+
+<p>En caso de tener credenciales válidas a nivel de sistema pero no tener acceso directo (por ejemplo con winrm), podremos utilizar la utilidad escrita en python3 de bloodhound. Con esta utilidad, no hace falta tener acceso al sistema, simplemente, con tener credenciales válidas, se podrá realizar la enumeración.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 bloodhound.py <span class="nt">-u</span> <span class="s2">"username"</span> <span class="nt">-p</span> <span class="s2">"password"</span> <span class="nt">-d</span> e1abrador.local <span class="nt">-c</span> all
+</code></pre></div></div>
+
+<p>En este caso, se generarán los archivos sin estar comprimidos. Los archivos generados deberían llamarse:</p>
+
+<ul>
+  <li>123456_domains.json</li>
+  <li>123456_computers.json</li>
+  <li>123456_users.json</li>
+  <li>123456_groups.json</li>
+</ul>
+
+<p>En este punto el proceso es igual que con el archivo .zip comentado anteriormente, la idea sería arrastrar los archivos a bloodhound y funconaría de la misma manera.</p>
+
+<h2>Como limpiar la base de datos</h2>
+
+<p>Esta pregunta la he visto mucho por las comunidades y los posts online, es bastante sencillo, si vamos a realizar una nueva enumeración, para dejar todo limpio de datos, lo podemos hacer de la siguiente manera:</p>
+
+<p align="center">
+  <img width="660" height="500" src="/assets/images/bloodhound/db.png" />
+</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#active-directory" class="page__taxonomy-item" rel="tag">Active_Directory</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#windows" class="page__taxonomy-item" rel="tag">Windows</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-09-07T00:00:00+02:00">September 07, 2021</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/ddos/" class="pagination--pager" title="Denial Of Service
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Eric Labrador</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
