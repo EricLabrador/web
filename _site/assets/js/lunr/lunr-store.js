@@ -14,6 +14,11 @@ var store = [{
         "tags": ["wordpress","shell","enumeration"],
         "url": "http://localhost:4000/wp_userScan/",
         "teaser":"http://localhost:4000/assets/images/wpsUsersScan/logo.png"},{
+        "title": "wp_userScan",
+        "excerpt":"## ¿Qué es wps_usersScan? **wps_usersScan** es un pequeño script en bash ideal para realizar la enumeración de usuarios en cualquier web que utilice Wordpress como CMS. ![](/assets/images/wpsUsersScan/wpsusers.png) Para utilizar la herramienta, es tan fácil como ejecutarla: ```bash ./wps_usersScan.sh ``` Seguidamente, saldrá un pequeño input en el cual se tiene que...","categories": ["script"],
+        "tags": ["wordpress","shell","enumeration"],
+        "url": "http://localhost:4000/wp_userScan.md/",
+        "teaser":"http://localhost:4000/assets/images/wpsUsersScan/logo.png"},{
         "title": "Denial Of Service",
         "excerpt":"¿Qué es un ataque de Denegación de servicio? El ataque de Denegación de Servicio consiste en inundar de solicitudes un servicio o red para dejarlo inhabilitado contra los usuarios legítimos. En este artículo hablaremos de 2 tipos de ataques: DoS y DDoS. DoS El ataque DoS és un tipo de...","categories": ["dos"],
         "tags": ["Denial of Service"],

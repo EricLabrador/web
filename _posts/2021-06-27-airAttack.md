@@ -69,7 +69,7 @@ aircrack-ng captura-01.cap
 
 <h3><u>ARP</u> <u>Request</u> <u>Replay</u> <u>Attack</u></h3>
 
-El ataque de **ARP Request Replay Attack** consiste en inyectar nuestra MAC en el router víctima, posteriormente se genera un ataque de denegación de servicio sobre uno de los clientes conectados (si este ataque se lanza contra todos, se obtendrán mas IVS, haciendo que la probabilidad de crackear la clave será más alta) y, cuando dichos clientes se vuelnvan a conectar a la red, se genererarán de forma automática paquetes ARP, lo que generará IVS.
+El ataque de **ARP Request Replay Attack** consiste en inyectar nuestra MAC en el router víctima, posteriormente se genera un ataque de denegación de servicio sobre uno de los clientes conectados (si este ataque se lanza contra todos, se obtendrán mas IVS, haciendo que la probabilidad de crackear la clave será más alta) y, cuando dichos clientes se vuelvan a conectar a la red, se genererarán de forma automática paquetes ARP, lo que generará IVS.
 
 ```bash
 airodump-ng -w captura --bssid mac_de_ap -c canal_de_ap wlan0
