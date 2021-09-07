@@ -104,7 +104,7 @@ En BloodHound, tendremos la posibilidad de indicarle al programa con que usuario
 
 * El primer paso sería marcar el usuario e1abrador como <b>owned</b> (click derecho en el usuario y "Mark user as Owned").
 
-* El siguiente paso sería buscar el grupo que queremos utilizar para realizar la escalada de privilegios, en este caso, "Account Operators", y marcarlo "Mark user as Owned"
+* El siguiente paso sería buscar el grupo que queremos utilizar para realizar la escalada de privilegios, en este caso, "Account Operators", y marcarlo "Mark group as Owned"
 
 * Finalmente, buscamos el grupo objetivo, que normalmente es "Domain Admins", le daremos a click derecho y "Shortest path to here from owned"
 
