@@ -116,7 +116,7 @@ Lo que comentaba en el paso anterior, BloodHound tiene un panel el cual incorpor
   <img width="760" height="500" src="/assets/images/bloodhound/generic_all.png">
 </p>
 
-Salen también las referiencias para explotar esa vulnerabilidad y las referencias por si se necesita mas información sobre dicha vulnerabilidad.
+Salen también las referiencias para explotar esa vulnerabilidad por si se necesita mas información sobre dicha vulnerabilidad.
 
 <h2>Python3 Bloodhound</h2>
 
