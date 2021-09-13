@@ -137,7 +137,8 @@ En este punto el proceso es igual que con el archivo .zip comentado anteriorment
 
 <h2>Como limpiar la base de datos</h2>
 
-Esta pregunta la he visto mucho por las comunidades y los posts online, es bastante sencillo, si vamos a realizar una nueva enumeración, para dejar todo limpio de datos, lo podemos hacer de la siguiente manera:
+Esta pregunta la he visto mucho por las comunidades y los posts online, es bastante sencillo, si vamos a realizar una nueva enumeración, 
+para dejar todo limpio de datos, lo podemos hacer de la siguiente manera:
 
 <p align="center">
   <img width="660" height="500" src="/assets/images/bloodhound/db.png">
