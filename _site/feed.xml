@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-22T20:15:28+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">BloodHound</title><link href="http://localhost:4000/bloodhound/" rel="alternate" type="text/html" title="BloodHound" /><published>2021-09-07T00:00:00+02:00</published><updated>2021-09-07T00:00:00+02:00</updated><id>http://localhost:4000/bloodhound</id><content type="html" xml:base="http://localhost:4000/bloodhound/">&lt;h2 id=&quot;qué-es-bloodhound&quot;&gt;¿Qué es BloodHound?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-09-22T20:16:32+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">simpleCurlScan</title><link href="http://localhost:4000/curl/" rel="alternate" type="text/html" title="simpleCurlScan" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/curl</id><content type="html" xml:base="http://localhost:4000/curl/">&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/curl/curl.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;qué-es-simplecurlscan&quot;&gt;¿Qué es simpleCurlScan?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;simpleCurlScan&lt;/strong&gt; es una herramienta creada en bash. Creé este pequeño script en base a la necesidad de realizar escaneo de directorios en una máquina remota la cual estaba bastante “desnuda”, en el sentido que python no estaba instalado (por ejemplo) o varios programas de linux que són altamente necesarios para realizar una mínima enumeración.&lt;/p&gt;
+
+&lt;p&gt;La herramienta funciona haciendo fuerza bruta con un diccionario, el cual contiene un gran número de potenciales directorios.&lt;/p&gt;
+
+&lt;p&gt;Para obtener los directorios/archivos que existen en la máquina remota, el script se basa en la respuesta del lado del servidor, por ejemplo, si hacemos la siguiente request (suponiendo que el directorio no existe):&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://127.0.0.1/noExisto&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El codigo http que nos dará es 404, ya que el servidor no puede encontrar la ruta solicitada. En cambio, si probamos otro directorio (suponiendo que dicho directorio si existe):&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://127.0.0.1/admin.php&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Los códigos que podemos obtener para hacernos la idea que dicho directorio/archivo funciona, son 200 (directorio/archivo existe y se puede ver por el usuario), 301 (directorio/archivo existe pero se nos está redireccionando a otro lugar) o el 403 (directorio/archivo existe pero el usuario no tiene permiso para ver el contenido). Esté último nos interesa ya que, en caso de tratarde de un directorio, podríamos listar subdirectorios/archivos.&lt;/p&gt;
+
+&lt;p&gt;Para utilizar esta herramienta, es tan fácil como:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./simpleCurlScan
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El script funcionará iterando sobre cada una de las lineas del diccionario que le pasemos, recomiendo utiizar este:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt&quot;&gt;https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;El código del script es el siguiente:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;file &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;file.txt&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+	&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;exist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /dev/null &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%{http_code}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;  http://127.0.0.1/&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 200 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[*] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - Existe&quot;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 301 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[*] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - Existe&quot;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 403 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[*] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - Existe&quot;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;wait&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En caso que la máquina no disponga de curl instalado, se puede utilizar con el binario ya compilado:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1&quot;&gt;https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Simplemente se tiene que añadir la ruta completa del binario de curl y con esto se podrá ejecutar sin problema.&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="shell" /><category term="enumeration" /><category term="curl" /><category term="web" /><summary type="html">En este artículo, explico la utilidad de la herramienta wp_userScan, escrita en Bash.</summary></entry><entry><title type="html">BloodHound</title><link href="http://localhost:4000/bloodhound/" rel="alternate" type="text/html" title="BloodHound" /><published>2021-09-07T00:00:00+02:00</published><updated>2021-09-07T00:00:00+02:00</updated><id>http://localhost:4000/bloodhound</id><content type="html" xml:base="http://localhost:4000/bloodhound/">&lt;h2 id=&quot;qué-es-bloodhound&quot;&gt;¿Qué es BloodHound?&lt;/h2&gt;
 
 &lt;p align=&quot;center&quot;&gt;
   &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/bloodhound/bh.png&quot; /&gt;
@@ -385,59 +440,4 @@ banner
 	&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="wordpress" /><category term="shell" /><category term="enumeration" /><summary type="html">En este artículo, explico la utilidad de la herramienta wp_userScan, escrita en Bash.</summary></entry><entry><title type="html">wp_userScan</title><link href="http://localhost:4000/smb_relay.md/" rel="alternate" type="text/html" title="wp_userScan" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/smb_relay.md</id><content type="html" xml:base="http://localhost:4000/smb_relay.md/">En</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="wordpress" /><category term="shell" /><category term="enumeration" /><summary type="html">En este artículo, explico que es el ataque smb relay, cuando y como ejecutarlo.</summary></entry><entry><title type="html">simpleCurlScan</title><link href="http://localhost:4000/curl/" rel="alternate" type="text/html" title="simpleCurlScan" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/curl</id><content type="html" xml:base="http://localhost:4000/curl/">&lt;p align=&quot;center&quot;&gt;
-  &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/curl/curl.png&quot; /&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&quot;qué-es-simplecurlscan&quot;&gt;¿Qué es simpleCurlScan?&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;simpleCurlScan&lt;/strong&gt; es una herramienta creada en bash. Creé este pequeño script en base a la necesidad de realizar escaneo de directorios en una máquina remota la cual estaba bastante “desnuda”, en el sentido que python no estaba instalado (por ejemplo) o varios programas de linux que són altamente necesarios para realizar una mínima enumeración.&lt;/p&gt;
-
-&lt;p&gt;La herramienta funciona haciendo fuerza bruta con un diccionario, el cual contiene un gran número de potenciales directorios.&lt;/p&gt;
-
-&lt;p&gt;Para obtener los directorios/archivos que existen en la máquina remota, el script se basa en la respuesta del lado del servidor, por ejemplo, si hacemos la siguiente request (suponiendo que el directorio no existe):&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://127.0.0.1/noExisto&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;El codigo http que nos dará es 404, ya que el servidor no puede encontrar la ruta solicitada. En cambio, si probamos otro directorio (suponiendo que dicho directorio si existe):&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;http://127.0.0.1/admin.php&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Los códigos que podemos obtener para hacernos la idea que dicho directorio/archivo funciona, son 200 (directorio/archivo existe y se puede ver por el usuario), 301 (directorio/archivo existe pero se nos está redireccionando a otro lugar) o el 403 (directorio/archivo existe pero el usuario no tiene permiso para ver el contenido). Esté último nos interesa ya que, en caso de tratarde de un directorio, podríamos listar subdirectorios/archivos.&lt;/p&gt;
-
-&lt;p&gt;Para utilizar esta herramienta, es tan fácil como:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./simpleCurlScan
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;El script funcionará iterando sobre cada una de las lineas del diccionario que le pasemos, recomiendo utiizar este:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt&quot;&gt;https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;El código del script es el siguiente:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;file &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;file.txt&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
-	&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;exist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /dev/null &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%{http_code}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;  http://127.0.0.1/&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 200 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
-		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[*] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - Existe&quot;&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 301 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
-		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[*] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - Existe&quot;&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; 403 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
-		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[*] &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; - Existe&quot;&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;wait&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;En caso que la máquina no disponga de curl instalado, se puede utilizar con el binario ya compilado:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1&quot;&gt;https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Simplemente se tiene que añadir la ruta completa del binario de curl y con esto se podrá ejecutar sin problema.&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="shell" /><category term="enumeration" /><category term="curl" /><category term="web" /><summary type="html">En este artículo, explico la utilidad de la herramienta wp_userScan, escrita en Bash.</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="wordpress" /><category term="shell" /><category term="enumeration" /><summary type="html">En este artículo, explico la utilidad de la herramienta wp_userScan, escrita en Bash.</summary></entry><entry><title type="html">wp_userScan</title><link href="http://localhost:4000/smb_relay.md/" rel="alternate" type="text/html" title="wp_userScan" /><published>2021-08-31T00:00:00+02:00</published><updated>2021-08-31T00:00:00+02:00</updated><id>http://localhost:4000/smb_relay.md</id><content type="html" xml:base="http://localhost:4000/smb_relay.md/">En</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="wordpress" /><category term="shell" /><category term="enumeration" /><summary type="html">En este artículo, explico que es el ataque smb relay, cuando y como ejecutarlo.</summary></entry></feed>
