@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>airAttack - e1abrador.io</title>
-<meta name="description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.">
+<meta name="description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWP como primera release.">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://localhost:4000/airAttack/">
 
 
-  <meta property="og:description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.">
+  <meta property="og:description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWP como primera release.">
 
 
 
@@ -308,7 +308,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="airAttack">
-    <meta itemprop="description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWPcomo primera release.">
+    <meta itemprop="description" content="En este artículo, explico la utilidad de la herramienta airAttack. También dejo reflejado cada ataque, la finalidad de cada ataque y como ejecutarlo. Todos los ataques de esta herramienta se ejecutan gracias a la suite aircrack-ng. La herramienta fue publicada en github el día 27/06/2021, pocos días después de aprobar el OSWP como primera release.">
     <meta itemprop="datePublished" content="August 31, 2021">
     
 
@@ -380,7 +380,7 @@ aircrack-ng captura-01.cap
 
 <h3><u>ARP</u> <u>Request</u> <u>Replay</u> <u>Attack</u></h3>
 
-<p>El ataque de <strong>ARP Request Replay Attack</strong> consiste en inyectar nuestra MAC en el router víctima, posteriormente se genera un ataque de denegación de servicio sobre uno de los clientes conectados (si este ataque se lanza contra todos, se obtendrán mas IVS, haciendo que la probabilidad de crackear la clave será más alta) y, cuando dichos clientes se vuelnvan a conectar a la red, se genererarán de forma automática paquetes ARP, lo que generará IVS.</p>
+<p>El ataque de <strong>ARP Request Replay Attack</strong> consiste en inyectar nuestra MAC en el router víctima, posteriormente se genera un ataque de denegación de servicio sobre uno de los clientes conectados (si este ataque se lanza contra todos, se obtendrán mas IVS, haciendo que la probabilidad de crackear la clave será más alta) y, cuando dichos clientes se vuelvan a conectar a la red, se genererarán de forma automática paquetes ARP, lo que generará IVS.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>airodump-ng <span class="nt">-w</span> captura <span class="nt">--bssid</span> mac_de_ap <span class="nt">-c</span> canal_de_ap wlan0
 aireplay-ng <span class="nt">-3</span> <span class="nt">-x</span> 1000 <span class="nt">-n</span> 1000 <span class="nt">-b</span> mac_de_ap <span class="nt">-h</span> mac_de_tarjeta wlan0
@@ -488,7 +488,7 @@ hccap2john miCaptura.hccap <span class="o">&gt;</span> <span class="nb">hash
       <a href="#" class="pagination--pager disabled">Previous</a>
     
     
-      <a href="/mis_certificaciones/" class="pagination--pager" title="Mis Certificaciones
+      <a href="/curl/" class="pagination--pager" title="simpleCurlScan
 ">Next</a>
     
   </nav>
