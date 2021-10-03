@@ -3,5 +3,5 @@ main:
     url: /
   - title: "Posts"
     url: /year-archive/
-  - title: "Certificaciones"
+  - title: "Certs"
     url: /certs/

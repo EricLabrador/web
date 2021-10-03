@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Mis Certificaciones
+title: Certificaciones
 date: 2021-08-31
 permalink: /certs/
 author_profile: true
