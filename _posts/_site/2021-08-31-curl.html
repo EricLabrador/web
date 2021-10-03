@@ -1,0 +1,56 @@
+<p align="center">
+  <img width="960" height="700" src="/assets/images/curl/curl.png" />
+</p>
+
+<h2 id="qué-es-simplecurlscan">¿Qué es simpleCurlScan?</h2>
+
+<p><strong>simpleCurlScan</strong> es una herramienta creada en bash. Creé este pequeño script en base a la necesidad de realizar escaneo de directorios en una máquina remota la cual estaba bastante “desnuda”, en el sentido que python no estaba instalado (por ejemplo) o varios programas de linux que són altamente necesarios para realizar una mínima enumeración.</p>
+
+<p>La herramienta funciona haciendo fuerza bruta con un diccionario, el cual contiene un gran número de potenciales directorios.</p>
+
+<p>Para obtener los directorios/archivos que existen en la máquina remota, el script se basa en la respuesta del lado del servidor, por ejemplo, si hacemos la siguiente request (suponiendo que el directorio no existe):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="s2">"http://127.0.0.1/noExisto"</span>
+</code></pre></div></div>
+
+<p>El codigo http que nos dará es 404, ya que el servidor no puede encontrar la ruta solicitada. En cambio, si probamos otro directorio (suponiendo que dicho directorio si existe):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="s2">"http://127.0.0.1/admin.php"</span>
+</code></pre></div></div>
+
+<p>Los códigos que podemos obtener para hacernos la idea que dicho directorio/archivo funciona, son 200 (directorio/archivo existe y se puede ver por el usuario), 301 (directorio/archivo existe pero se nos está redireccionando a otro lugar) o el 403 (directorio/archivo existe pero el usuario no tiene permiso para ver el contenido). Esté último nos interesa ya que, en caso de tratarde de un directorio, podríamos listar subdirectorios/archivos.</p>
+
+<p>Para utilizar esta herramienta, es tan fácil como:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./simpleCurlScan
+</code></pre></div></div>
+
+<p>El script funcionará iterando sobre cada una de las lineas del diccionario que le pasemos, recomiendo utiizar este:</p>
+
+<ul>
+  <li><a href="https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt">https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt</a></li>
+</ul>
+
+<p>El código del script es el siguiente:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="k">for </span>file <span class="k">in</span> <span class="si">$(</span><span class="nb">cat </span>file.txt<span class="si">)</span><span class="p">;</span> <span class="k">do
+	</span><span class="nv">exist</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-k</span> <span class="nt">-o</span> /dev/null <span class="nt">-s</span> <span class="nt">-w</span> <span class="s2">"%{http_code}</span><span class="se">\n</span><span class="s2">"</span>  http://127.0.0.1/<span class="nv">$file</span><span class="si">)</span>
+	<span class="k">if</span> <span class="o">[</span> <span class="nv">$exist</span> <span class="o">==</span> 200 <span class="o">]</span><span class="p">;</span> <span class="k">then
+		</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">[*] </span><span class="nv">$file</span><span class="s2"> - Existe"</span>
+	<span class="k">elif</span> <span class="o">[</span> <span class="nv">$exist</span> <span class="o">==</span> 301 <span class="o">]</span><span class="p">;</span> <span class="k">then
+		</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">[*] </span><span class="nv">$file</span><span class="s2"> - Existe"</span>
+	<span class="k">elif</span> <span class="o">[</span> <span class="nv">$exist</span> <span class="o">==</span> 403 <span class="o">]</span><span class="p">;</span> <span class="k">then
+		</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">[*] </span><span class="nv">$file</span><span class="s2"> - Existe"</span>
+	<span class="k">fi</span><span class="p">;</span>
+<span class="k">done</span><span class="p">;</span> <span class="nb">wait</span>
+</code></pre></div></div>
+
+<p>En caso que la máquina no disponga de curl instalado, se puede utilizar con el binario ya compilado:</p>
+
+<ul>
+  <li><a href="https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1">https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1</a></li>
+</ul>
+
+<p>Simplemente se tiene que añadir la ruta completa del binario de curl y con esto se podrá ejecutar sin problema.</p>

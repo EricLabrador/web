@@ -9,40 +9,40 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Denial Of Service - e1abrador.io</title>
-<meta name="description" content="En este artículo, explico la diferencia entre un ataque Dos y DDoS y como ejecutar un ataque DoS con un ejemplo básico.">
+<!-- begin _includes/seo.html --><title>simpleCurlScan - e1abrador.io</title>
+<meta name="description" content="En este artículo, explico la utilidad de la herramienta simpleCurlScan, escrita en Bash.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="e1abrador.io">
-<meta property="og:title" content="Denial Of Service">
-<meta property="og:url" content="http://localhost:4000/ddos/">
+<meta property="og:title" content="simpleCurlScan">
+<meta property="og:url" content="http://localhost:4000/curl/">
 
 
-  <meta property="og:description" content="En este artículo, explico la diferencia entre un ataque Dos y DDoS y como ejecutar un ataque DoS con un ejemplo básico.">
-
-
-
-  <meta property="og:image" content="http://localhost:4000/assets/images/dos/logo.jpg">
+  <meta property="og:description" content="En este artículo, explico la utilidad de la herramienta simpleCurlScan, escrita en Bash.">
 
 
 
-
-
-  <meta property="article:published_time" content="2021-09-03T00:00:00+02:00">
+  <meta property="og:image" content="http://localhost:4000/assets/images/curl/logo.png">
 
 
 
 
 
-  
+  <meta property="article:published_time" content="2021-09-22T00:00:00+02:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/ddos/">
+
+<link rel="canonical" href="http://localhost:4000/curl/">
 
 
 
@@ -160,7 +160,7 @@
         <span class="sep">/</span>
       
       
-        <li class="current">Denial Of Service</li>
+        <li class="current">simpleCurlScan</li>
       
     
   </ol>
@@ -305,15 +305,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Denial Of Service">
-    <meta itemprop="description" content="En este artículo, explico la diferencia entre un ataque Dos y DDoS y como ejecutar un ataque DoS con un ejemplo básico.">
-    <meta itemprop="datePublished" content="September 03, 2021">
+    <meta itemprop="headline" content="simpleCurlScan">
+    <meta itemprop="description" content="En este artículo, explico la utilidad de la herramienta simpleCurlScan, escrita en Bash.">
+    <meta itemprop="datePublished" content="September 22, 2021">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Denial Of Service
+          <h1 id="page-title" class="page__title" itemprop="headline">simpleCurlScan
 </h1>
           
         </header>
@@ -323,77 +323,66 @@
         
         <p class="page__meta">
           
-            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2021-09-03T00:00:00+02:00">September 03, 2021 </time>&emsp;
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2021-09-22T00:00:00+02:00">September 22, 2021 </time>&emsp;
           
           
         </p>
-        <h2 id="qué-es-un-ataque-de-denegación-de-servicio">¿Qué es un ataque de Denegación de servicio?</h2>
+        <p align="center">
+  <img width="960" height="700" src="/assets/images/curl/curl.png" />
+</p>
 
-<p>El ataque de <strong>Denegación de Servicio</strong> consiste en inundar de solicitudes un servicio o red para dejarlo inhabilitado contra los usuarios legítimos.</p>
+<h2 id="qué-es-simplecurlscan">¿Qué es simpleCurlScan?</h2>
 
-<p>En este artículo hablaremos de 2 tipos de ataques: <strong>DoS</strong> y <strong>DDoS</strong>.</p>
+<p><strong>simpleCurlScan</strong> es una herramienta creada en bash. Creé este pequeño script en base a la necesidad de realizar escaneo de directorios en una máquina remota la cual estaba bastante “desnuda”, en el sentido que python no estaba instalado (por ejemplo) o varios programas de linux que són altamente necesarios para realizar una mínima enumeración.</p>
 
-<h2><b>DoS</b></h2>
+<p>La herramienta funciona haciendo fuerza bruta con un diccionario, el cual contiene un gran número de potenciales directorios.</p>
 
-<p>El ataque DoS és un tipo de ataque (de los muchos que hay) de Denegación de Servicio, en este ataque las peticiones al servidor se ejecutan desde un único ordenador. En caso que el servidor objetivo cuente con algún firewall medianamente bien configurado, en el instante que se envíen X número de peticiones, la IP se bloqueará. Además, para que salga bien, el ordenador atacante tiene que contar con buenos componentes para poder añadir mas “threads” al programa y que se envíen mas peticiones por segundo al servidor.</p>
+<p>Para obtener los directorios/archivos que existen en la máquina remota, el script se basa en la respuesta del lado del servidor, por ejemplo, si hacemos la siguiente request (suponiendo que el directorio no existe):</p>
 
-<h2><b>DDoS</b></h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="s2">"http://127.0.0.1/noExisto"</span>
+</code></pre></div></div>
 
-<p>El ataque de DDoS és también un ataque de denegación de servicio, en este caso, las peticiones se envían desde diferentes ordenadores a lo largo de la ciudad/país/continente/mundo, para hacer esto, el atacante hace uso de una BotNet.</p>
+<p>El codigo http que nos dará es 404, ya que el servidor no puede encontrar la ruta solicitada. En cambio, si probamos otro directorio (suponiendo que dicho directorio si existe):</p>
 
-<h3><b>BotNet</b></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="s2">"http://127.0.0.1/admin.php"</span>
+</code></pre></div></div>
 
-<p>Una <strong>BotNet</strong> es un conjunto de ordenadores que han sido infectados por un malware y son controlados de forma remota por un atacante, estos ordenadores se conocen también como “Ordenadores Zombies”.
-Cuando el atacante crea conveniente, utiliza todos los ordenadores infectados y lanza peticiones a un servidor. De esta forma, dado que las peticiones suelen venir de diferentes IP’s, al servidor se le hace imposible gestionar tantas requests, ya que por mas que se bloquee una IP, seguirán habiendo muchas peticiones por leer por parte del los bots. Cuantos mas ordenadores tenga controlado el atacante, serán mas altas las probabilidades de tumbar el servidor.</p>
+<p>Los códigos que podemos obtener para hacernos la idea que dicho directorio/archivo funciona, son 200 (directorio/archivo existe y se puede ver por el usuario), 301 (directorio/archivo existe pero se nos está redireccionando a otro lugar) o el 403 (directorio/archivo existe pero el usuario no tiene permiso para ver el contenido). Esté último nos interesa ya que, en caso de tratarde de un directorio, podríamos listar subdirectorios/archivos.</p>
 
-<p><strong>Nota:</strong> En este artículo no explicaré como hacer una BotNet, ya que no dispongo de tales ordenadores como para hacerlo, y evidentemente, no lo haré de forma ilegal.</p>
+<p>Para utilizar esta herramienta, es tan fácil como:</p>
 
-<h2>Como se hace este ataque?</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./simpleCurlScan
+</code></pre></div></div>
 
-<p>Hay muchos programas para utilizar, yo para este ejemplo, utilizaré LOIC (Low Orbit Ion Cannon), es un programa que se utiliza por los Administradores de Sistema para “estresar” un servidor web enviando un gran número de peticiones, de esta forma, el Administrador se puede hacer una idea de cuantos clientes pueden visitar una web sin que esta se colapse, este progrma se puede utilizar de forma “lícita” o de forma ilegal, yo, para evitar problemas legales, el “Proof of Concept” lo haré con un servidor web local.</p>
-
-<p>LOIC lo utilizaré en una máquina virtual windows (windows 10), dejo el enlace de descarga:</p>
-
-<ul>
-  <li><a href="https://sourceforge.net/projects/loic/">https://sourceforge.net/projects/loic/</a></li>
-</ul>
-
-<p><strong>Especificaciones de la máquina virtual Windows 10</strong></p>
+<p>El script funcionará iterando sobre cada una de las lineas del diccionario que le pasemos, recomiendo utiizar este:</p>
 
 <ul>
-  <li>RAM -&gt; <strong>6000 MB</strong> (6GB)</li>
-  <li>Procesadores -&gt; <strong>8</strong></li>
-  <li>Espacio en Disco Duro -&gt; <strong>100 GB</strong></li>
+  <li><a href="https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt">https://github.com/danielmiessler/SecLists/raw/master/Discovery/Web-Content/directory-list-2.3-medium.txt</a></li>
 </ul>
 
-<p>Como servidor web, utilizaré un servidor apache normal, el host será una máquina kali.</p>
+<p>El código del script es el siguiente:</p>
 
-<p><strong>Especificaciones de la máquina virtual Kali Linux</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="k">for </span>file <span class="k">in</span> <span class="si">$(</span><span class="nb">cat </span>file.txt<span class="si">)</span><span class="p">;</span> <span class="k">do
+	</span><span class="nv">exist</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-k</span> <span class="nt">-o</span> /dev/null <span class="nt">-s</span> <span class="nt">-w</span> <span class="s2">"%{http_code}</span><span class="se">\n</span><span class="s2">"</span>  http://127.0.0.1/<span class="nv">$file</span><span class="si">)</span>
+	<span class="k">if</span> <span class="o">[</span> <span class="nv">$exist</span> <span class="o">==</span> 200 <span class="o">]</span><span class="p">;</span> <span class="k">then
+		</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">[*] </span><span class="nv">$file</span><span class="s2"> - Existe"</span>
+	<span class="k">elif</span> <span class="o">[</span> <span class="nv">$exist</span> <span class="o">==</span> 301 <span class="o">]</span><span class="p">;</span> <span class="k">then
+		</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">[*] </span><span class="nv">$file</span><span class="s2"> - Existe"</span>
+	<span class="k">elif</span> <span class="o">[</span> <span class="nv">$exist</span> <span class="o">==</span> 403 <span class="o">]</span><span class="p">;</span> <span class="k">then
+		</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="se">\n\t</span><span class="s2">[*] </span><span class="nv">$file</span><span class="s2"> - Existe"</span>
+	<span class="k">fi</span><span class="p">;</span>
+<span class="k">done</span><span class="p">;</span> <span class="nb">wait</span>
+</code></pre></div></div>
+
+<p>En caso que la máquina no disponga de curl instalado, se puede utilizar con el binario ya compilado:</p>
 
 <ul>
-  <li>RAM -&gt; <strong>5000 MB</strong> (5GB)</li>
-  <li>Procesadores -&gt; <strong>4</strong></li>
-  <li>Espacio en Disco Duro -&gt; <strong>80 GB</strong></li>
+  <li><a href="https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1">https://github.com/moparisthebest/static-curl/releases/tag/v7.79.1</a></li>
 </ul>
 
-<p>Vamos a empezar con el “Overview” en la máquina Windows. Vemos que los paquetes ICMP no tardan mas de 1ms, esto es normal dado que estamos en una red local:</p>
-
-<p><img src="/assets/images/dos/icmp_requests.png" alt="" /></p>
-
-<p>Ahora, vamos a ver que tal se comporta el servidor cuando inciamos el LOIC.</p>
-
-<p><img src="/assets/images/dos/LOIC_started.png" alt="" /></p>
-
-<p>Hay que tener en cuenta que la configuración de componentes de las 2 máquinas es desigual, ya que la máquina Windows cuenta con 8 procesadores y 6 GB de RAM y la máquina Kali cuenta con 5 GB y 4 procesadores. Igualmente, en la imagen, se puede comprobar que ha habido momentos en los que el servidor no respondía, en este caso, como es una máquina virtual, no le he podido poner mas “threads” (cuantos mas se pongan, mas alta será la posibilidad de tumbar la web). Si le poneis mejores especificaciones a la MV podréis probarlo mas “a lo grande”.</p>
-
-<p>Ahora, vamos a ver que ha pasado por detrás en los logs del apache. La ruta en Linux es “/var/log/apache2/access.log”.</p>
-
-<p><img src="/assets/images/dos/connections_1.png" alt="" /></p>
-
-<p><img src="/assets/images/dos/a_cat.png" alt="" /></p>
-
-<p>Podemos ver que hay momentos en los que el servidor no ha podido capturar todas las requests, estos mensajes de “A cat is fine too” han salido ya que es el mensaje que envía LOIC al servidor de forma continua. La parte que no cargaba la web eran momentos puntuales por lo que he comentado antes, no són máquinas con grandes especificaciones y para tumbar una web se necesitas mejores componentes en el PC.</p>
-
+<p>Simplemente se tiene que añadir la ruta completa del binario de curl y con esto se podrá ejecutar sin problema.</p>
 
         
       </section>
@@ -414,7 +403,19 @@ Cuando el atacante crea conveniente, utiliza todos los ordenadores infectados y 
     
       
       
-      <a href="/tags/#denial-of-service" class="page__taxonomy-item" rel="tag">Denial of Service</a>
+      <a href="/tags/#curl" class="page__taxonomy-item" rel="tag">curl</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#enumeration" class="page__taxonomy-item" rel="tag">enumeration</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#shell" class="page__taxonomy-item" rel="tag">shell</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#web" class="page__taxonomy-item" rel="tag">web</a>
     
     </span>
   </p>
@@ -435,14 +436,14 @@ Cuando el atacante crea conveniente, utiliza todos los ordenadores infectados y 
     
       
       
-      <a href="/categories/#dos" class="page__taxonomy-item" rel="tag">dos</a>
+      <a href="/categories/#script" class="page__taxonomy-item" rel="tag">script</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-09-03T00:00:00+02:00">September 03, 2021</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-09-22T00:00:00+02:00">September 22, 2021</time></p>
         
       </footer>
 
@@ -451,12 +452,11 @@ Cuando el atacante crea conveniente, utiliza todos los ordenadores infectados y 
       
   <nav class="pagination">
     
-      <a href="/wp_userScan/" class="pagination--pager" title="wp_userScan
+      <a href="/bloodhound/" class="pagination--pager" title="BloodHound
 ">Previous</a>
     
     
-      <a href="/bloodhound/" class="pagination--pager" title="BloodHound
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
