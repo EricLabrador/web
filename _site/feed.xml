@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-03T09:54:34+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">simpleCurlScan</title><link href="http://localhost:4000/curl/" rel="alternate" type="text/html" title="simpleCurlScan" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/curl</id><content type="html" xml:base="http://localhost:4000/curl/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-18T05:01:11+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">subdomainDump</title><link href="http://localhost:4000/security-trails-subdomains/" rel="alternate" type="text/html" title="subdomainDump" /><published>2021-10-17T00:00:00+02:00</published><updated>2021-10-17T00:00:00+02:00</updated><id>http://localhost:4000/security-trails-subdomains</id><content type="html" xml:base="http://localhost:4000/security-trails-subdomains/">&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/subdomain/securitytrails.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&quot;qué-es-subdomaindump&quot;&gt;¿Qué es subdomainDump?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;subdomainDump&lt;/strong&gt; es una herramienta escrita en bash. Este script automatiza la obtención de subdominios a través de la web &lt;a href=&quot;https://securitytrails.com/&quot;&gt;https://securitytrails.com/&lt;/a&gt;. En lugar de arrastrar las cookies de sesión, dado que es mas sencillo con la API, simplemente utilizaremos dicha API para gestionar todas las requests. Es una web muy útil en Bug Bounty, sobretodo en la parte de Reconocimiento en los dominios “scope” que correspondan.&lt;/p&gt;
+
+&lt;p&gt;Para utilizar la herramienta, el primer paso es añadir el API KEY de la cuenta del usuario. Debería quedar de la siguiente forma:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;API_KEY=&quot;'apikey:rWxW89Sbee...'&quot;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;La API KEY se puede obtener a través del siguiente enlace:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://securitytrails.com/app/account/credentials&quot;&gt;https://securitytrails.com/app/account/credentials&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A continuación, ya se puede ejecutar el script:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash subdomainDump.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El script solicitará un dominio, para realizar una prueba se puede utilizar &lt;b&gt;google.es&lt;/b&gt;.&lt;/p&gt;
+
+&lt;p&gt;Código del script:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;API_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;'apikey:&amp;lt;api key here&amp;gt;'&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-ne&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[*] Domain: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;domain
+&lt;span class=&quot;c&quot;&gt;#Example: google.es&lt;/span&gt;
+
+
+&lt;span class=&quot;nv&quot;&gt;first_url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Y3VybCAtcyAtLXJlcXVlc3QgR0VUIC0tdXJsIGh0dHBzOi8vYXBpLnNlY3VyaXR5dHJhaWxzLmNvbS92MS9kb21haW4vCg==&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;base64_domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$domain&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;subdomains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/subdomains --header &quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;api_key_base64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$API_KEY&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;third_url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fCB0ciAnXG4nICcgJyB8IHRyIC1kICcgJyB8IGdyZXAgLW9QICJcWy4qP1xdIiB8IHRyIC1kICdbXScgfHRyICcsJyAnXG4nIHwgdHIgLWQgJyIn&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$first_url$base64_domain$subdomains$api_key_base64$third_url&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;c&quot;&gt;#execute command + output&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /tmp/sec.txt
+&lt;span class=&quot;nv&quot;&gt;all_domains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /tmp/sec.txt | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\n'&lt;/span&gt; | bash&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;line &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$all_domains&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+	&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$line&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$domain&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; /tmp/sec.txt
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="API KEY" /><category term="web" /><category term="Bug Bounty" /><summary type="html">En este artículo, explico la utilidad de la herramienta subdomainDump.sh, escrita en Bash.</summary></entry><entry><title type="html">simpleCurlScan</title><link href="http://localhost:4000/curl/" rel="alternate" type="text/html" title="simpleCurlScan" /><published>2021-09-22T00:00:00+02:00</published><updated>2021-09-22T00:00:00+02:00</updated><id>http://localhost:4000/curl</id><content type="html" xml:base="http://localhost:4000/curl/">&lt;p align=&quot;center&quot;&gt;
   &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/curl/curl.png&quot; /&gt;
 &lt;/p&gt;
 

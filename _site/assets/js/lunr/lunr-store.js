@@ -23,4 +23,9 @@ var store = [{
         "excerpt":"¿Qué es simpleCurlScan? simpleCurlScan es una herramienta creada en bash. Creé este pequeño script en base a la necesidad de realizar escaneo de directorios en una máquina remota la cual estaba bastante “desnuda”, en el sentido que python no estaba instalado (por ejemplo) o varios programas de linux que són...","categories": ["script"],
         "tags": ["shell","enumeration","curl","web"],
         "url": "http://localhost:4000/curl/",
-        "teaser":"http://localhost:4000/assets/images/curl/logo.png"}]
+        "teaser":"http://localhost:4000/assets/images/curl/logo.png"},{
+        "title": "subdomainDump",
+        "excerpt":"¿Qué es subdomainDump? subdomainDump es una herramienta escrita en bash. Este script automatiza la obtención de subdominios a través de la web https://securitytrails.com/. En lugar de arrastrar las cookies de sesión, dado que es mas sencillo con la API, simplemente utilizaremos dicha API para gestionar todas las requests. Es una...","categories": ["script"],
+        "tags": ["API KEY","web","Bug Bounty"],
+        "url": "http://localhost:4000/security-trails-subdomains/",
+        "teaser":"http://localhost:4000/assets/images/subdomain/logo.png"}]
