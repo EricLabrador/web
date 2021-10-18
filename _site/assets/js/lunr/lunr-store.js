@@ -28,4 +28,9 @@ var store = [{
         "excerpt":"¿Qué es subdomainDump? subdomainDump es una herramienta escrita en bash. Este script automatiza la obtención de subdominios a través de la web https://securitytrails.com/. En lugar de arrastrar las cookies de sesión, dado que es mas sencillo con la API, simplemente utilizaremos dicha API para gestionar todas las requests. Es una...","categories": ["script"],
         "tags": ["API KEY","web","Bug Bounty"],
         "url": "http://localhost:4000/security-trails-subdomains/",
-        "teaser":"http://localhost:4000/assets/images/subdomain/logo.png"}]
+        "teaser":"http://localhost:4000/assets/images/subdomain/logo.png"},{
+        "title": "autoRPC",
+        "excerpt":"¿Qué es autoRPC? autoRPC es una herramienta la cual automatiza la enumeración del protocolo RPC de Windows. La herramienta funciona iterando sobre unos comandos aplicables al servicio RPC, como por ejemplo enumdomusers. Mediante el uso de variables de bash y bucles for, se consigue obtener la información que pretendo obtener...","categories": ["script"],
+        "tags": ["Windows","enumeration","RPC"],
+        "url": "http://localhost:4000/autoRPC/",
+        "teaser":null}]

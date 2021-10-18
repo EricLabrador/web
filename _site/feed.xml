@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-18T05:01:11+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">subdomainDump</title><link href="http://localhost:4000/security-trails-subdomains/" rel="alternate" type="text/html" title="subdomainDump" /><published>2021-10-17T00:00:00+02:00</published><updated>2021-10-17T00:00:00+02:00</updated><id>http://localhost:4000/security-trails-subdomains</id><content type="html" xml:base="http://localhost:4000/security-trails-subdomains/">&lt;p align=&quot;center&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-18T18:17:48+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">autoRPC</title><link href="http://localhost:4000/autoRPC/" rel="alternate" type="text/html" title="autoRPC" /><published>2021-10-18T00:00:00+02:00</published><updated>2021-10-18T00:00:00+02:00</updated><id>http://localhost:4000/autoRPC</id><content type="html" xml:base="http://localhost:4000/autoRPC/">&lt;h2 id=&quot;qué-es-autorpc&quot;&gt;¿Qué es autoRPC?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;autoRPC&lt;/strong&gt; es una herramienta la cual automatiza la enumeración del protocolo RPC de Windows.&lt;/p&gt;
+
+&lt;p&gt;La herramienta funciona iterando sobre unos comandos aplicables al servicio RPC, como por ejemplo &lt;b&gt;enumdomusers&lt;/b&gt;. Mediante el uso de variables de bash y bucles for, se consigue obtener la información que pretendo obtener de forma automática en el script. He añadido una interfaz de shell para que la experiéncia de usuario sea mejor, en cada utilidad que tenga el script, se pedirán credenciales de usuario o no, la IP del servidor remoto siempre se pide.&lt;/p&gt;
+
+&lt;p&gt;autoRPC se puede obtener en mi github personal:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/e1abrador/autoRPC&quot;&gt;https://github.com/e1abrador/autoRPC&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Para utilizar autoRPC, es tan senzillo como:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash autoRPC.sh &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Con la flag “-h” saltará el panel de ayuda, simplemente poniendo la flag de lo que se quiera enumerar, ej:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash autoRPC &lt;span class=&quot;nt&quot;&gt;-unauth-domain-admins&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Con este ejemplo, el script simplemente solicitará una IP, si la IP se introduce y el servidor remoto acepta conexiones RCP, en este caso, sin autenticación, se enumerarán los usuarios administradores del Directorio Activo. Para saber que hace cada flag, he implementado una pequeña descripción en el panel de ayuda para que no hayan dudas.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/autoRPC/options.png&quot; /&gt;
+&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="Windows" /><category term="enumeration" /><category term="RPC" /><summary type="html">En este artículo, explico la utilidad de la herramienta autoRPC, escrita en Bash.</summary></entry><entry><title type="html">subdomainDump</title><link href="http://localhost:4000/security-trails-subdomains/" rel="alternate" type="text/html" title="subdomainDump" /><published>2021-10-17T00:00:00+02:00</published><updated>2021-10-17T00:00:00+02:00</updated><id>http://localhost:4000/security-trails-subdomains</id><content type="html" xml:base="http://localhost:4000/security-trails-subdomains/">&lt;p align=&quot;center&quot;&gt;
   &lt;img width=&quot;960&quot; height=&quot;700&quot; src=&quot;/assets/images/subdomain/securitytrails.png&quot; /&gt;
 &lt;/p&gt;
 
