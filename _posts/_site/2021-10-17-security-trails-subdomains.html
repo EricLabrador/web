@@ -1,0 +1,54 @@
+<p align="center">
+  <img width="960" height="700" src="/assets/images/subdomain/securitytrails.png" />
+</p>
+
+<h2 id="qué-es-subdomaindump">¿Qué es subdomainDump?</h2>
+
+<p><strong>subdomainDump</strong> es una herramienta escrita en bash. Este script automatiza la obtención de subdominios a través de la web <a href="https://securitytrails.com/">https://securitytrails.com/</a>. En lugar de arrastrar las cookies de sesión, dado que es mas sencillo con la API, simplemente utilizaremos dicha API para gestionar todas las requests. Es una web muy útil en Bug Bounty, sobretodo en la parte de Reconocimiento en los dominios “scope” que correspondan.</p>
+
+<p>Para utilizar la herramienta, el primer paso es añadir el API KEY de la cuenta del usuario. Debería quedar de la siguiente forma:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">API_KEY="'apikey:rWxW89Sbee...'"
+</span></code></pre></div></div>
+
+<p>La API KEY se puede obtener a través del siguiente enlace:</p>
+
+<ul>
+  <li><a href="https://securitytrails.com/app/account/credentials">https://securitytrails.com/app/account/credentials</a></li>
+</ul>
+
+<p>A continuación, ya se puede ejecutar el script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash subdomainDump.sh
+</code></pre></div></div>
+
+<p>El script solicitará un dominio, para realizar una prueba se puede utilizar <b>google.es</b>.</p>
+
+<p>Código del script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">API_KEY</span><span class="o">=</span><span class="s2">"'apikey:&lt;api key here&gt;'"</span>
+
+<span class="nb">echo</span> <span class="nt">-ne</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">[*] Domain: "</span> <span class="o">&amp;&amp;</span> <span class="nb">read </span>domain
+<span class="c">#Example: google.es</span>
+
+
+<span class="nv">first_url</span><span class="o">=</span><span class="s2">"Y3VybCAtcyAtLXJlcXVlc3QgR0VUIC0tdXJsIGh0dHBzOi8vYXBpLnNlY3VyaXR5dHJhaWxzLmNvbS92MS9kb21haW4vCg=="</span>
+<span class="nv">base64_domain</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="nv">$domain</span><span class="s2">"</span> | <span class="nb">base64</span><span class="si">)</span>
+<span class="nv">subdomains</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"/subdomains --header "</span> | <span class="nb">base64</span><span class="si">)</span>
+<span class="nv">api_key_base64</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$API_KEY</span> | <span class="nb">base64</span><span class="si">)</span>
+<span class="nv">third_url</span><span class="o">=</span><span class="s2">"fCB0ciAnXG4nICcgJyB8IHRyIC1kICcgJyB8IGdyZXAgLW9QICJcWy4qP1xdIiB8IHRyIC1kICdbXScgfHRyICcsJyAnXG4nIHwgdHIgLWQgJyIn"</span>
+<span class="nb">command</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="nv">$first_url$base64_domain$subdomains$api_key_base64$third_url</span><span class="s2">"</span><span class="si">)</span>
+
+
+<span class="c">#execute command + output</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="nv">$command</span><span class="s2">"</span> | <span class="nb">base64</span> <span class="nt">-d</span> <span class="o">&gt;</span> /tmp/sec.txt
+<span class="nv">all_domains</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> /tmp/sec.txt | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'\n'</span> | bash<span class="si">)</span>
+<span class="k">for </span>line <span class="k">in</span> <span class="si">$(</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="nv">$all_domains</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+	</span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">.</span><span class="nv">$domain</span><span class="s2"> "</span><span class="p">;</span>
+<span class="k">done
+
+</span><span class="nb">rm</span> <span class="nt">-r</span> /tmp/sec.txt
+
+</code></pre></div></div>

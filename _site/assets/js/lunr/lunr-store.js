@@ -33,4 +33,9 @@ var store = [{
         "excerpt":"¿Qué es autoRPC? autoRPC es una herramienta la cual automatiza la enumeración del protocolo RPC de Windows. La herramienta funciona iterando sobre unos comandos aplicables al servicio RPC, como por ejemplo enumdomusers. Mediante el uso de variables de bash y bucles for, se consigue obtener la información que pretendo obtener...","categories": ["script"],
         "tags": ["Windows","enumeration","RPC"],
         "url": "http://localhost:4000/autoRPC/",
+        "teaser":null},{
+        "title": "DSTIKE deauther V3",
+        "excerpt":"¿Qué es DSTIKE Deauther? DSTIKE Deauther es una herramienta, entre otras, que sale en la serie de Mr Robot, este dispositivo se utiliza para bloquear y denegar conexiones de redes wifi. Para acceder a la web de compra, pulsa aquí Vista rápida del dispositivo 1 - Este botón, en caso...","categories": ["script"],
+        "tags": ["hardware hacking","wireless"],
+        "url": "http://localhost:4000/dstike_deauther_v3/",
         "teaser":null}]

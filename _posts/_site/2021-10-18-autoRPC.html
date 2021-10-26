@@ -1,0 +1,27 @@
+<h2 id="qué-es-autorpc">¿Qué es autoRPC?</h2>
+
+<p><strong>autoRPC</strong> es una herramienta la cual automatiza la enumeración del protocolo RPC de Windows.</p>
+
+<p>La herramienta funciona iterando sobre unos comandos aplicables al servicio RPC, como por ejemplo <b>enumdomusers</b>. Mediante el uso de variables de bash y bucles for, se consigue obtener la información que pretendo obtener de forma automática en el script. He añadido una interfaz de shell para que la experiéncia de usuario sea mejor, en cada utilidad que tenga el script, se pedirán credenciales de usuario o no, la IP del servidor remoto siempre se pide.</p>
+
+<p>autoRPC se puede obtener en mi github personal:</p>
+
+<ul>
+  <li><a href="https://github.com/e1abrador/autoRPC">https://github.com/e1abrador/autoRPC</a></li>
+</ul>
+
+<p>Para utilizar autoRPC, es tan senzillo como:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash autoRPC.sh <span class="nt">-h</span>
+</code></pre></div></div>
+
+<p>Con la flag “-h” saltará el panel de ayuda, simplemente poniendo la flag de lo que se quiera enumerar, ej:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash autoRPC <span class="nt">-unauth-domain-admins</span>
+</code></pre></div></div>
+
+<p>Con este ejemplo, el script simplemente solicitará una IP, si la IP se introduce y el servidor remoto acepta conexiones RCP, en este caso, sin autenticación, se enumerarán los usuarios administradores del Directorio Activo. Para saber que hace cada flag, he implementado una pequeña descripción en el panel de ayuda para que no hayan dudas.</p>
+
+<p align="center">
+  <img width="960" height="700" src="/assets/images/autoRPC/options.png" />
+</p>

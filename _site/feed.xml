@@ -1,4 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-18T18:17:48+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">autoRPC</title><link href="http://localhost:4000/autoRPC/" rel="alternate" type="text/html" title="autoRPC" /><published>2021-10-18T00:00:00+02:00</published><updated>2021-10-18T00:00:00+02:00</updated><id>http://localhost:4000/autoRPC</id><content type="html" xml:base="http://localhost:4000/autoRPC/">&lt;h2 id=&quot;qué-es-autorpc&quot;&gt;¿Qué es autoRPC?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-26T20:07:19+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">DSTIKE deauther V3</title><link href="http://localhost:4000/dstike_deauther_v3/" rel="alternate" type="text/html" title="DSTIKE deauther V3" /><published>2021-10-26T00:00:00+02:00</published><updated>2021-10-26T00:00:00+02:00</updated><id>http://localhost:4000/dstike_deauther_v3</id><content type="html" xml:base="http://localhost:4000/dstike_deauther_v3/">&lt;h2 id=&quot;qué-es-dstike-deauther&quot;&gt;¿Qué es DSTIKE Deauther?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;DSTIKE Deauther&lt;/strong&gt; es una herramienta, entre otras, que sale en la serie de Mr Robot, este dispositivo se utiliza para bloquear y denegar conexiones de redes wifi.&lt;/p&gt;
+
+&lt;p&gt;Para acceder a la web de compra, pulsa &lt;a href=&quot;https://www.amazon.es/Seamuing-desarrollo-programable-incorporada-impresi%C3%B3n/dp/B08XJ8W9TT/ref=sr_1_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;amp;dchild=1&amp;amp;keywords=dstike&amp;amp;qid=1635271572&amp;amp;qsid=261-8620237-3578240&amp;amp;sr=8-1&amp;amp;sres=B08XJ8W9TT%2CB089R5XQ87%2CB082TNGSRN%2CB09BLSWT2G%2CB08RRVBZKM%2CB092ST6LQW%2CB088LV6ZBG%2CB092R63HXC%2CB092TPJDY1%2CB09377CQ7P%2CB08TX3451X%2CB06Y1RVHBP%2CB09HG9CC7B%2CB07DKD79Y9%2CB06XFTLN43%2CB078J7LDLY%2CB06Y1LZLLY%2CB07QPN951P%2CB06Y1ZPNMS%2CB09573BPY8&quot;&gt;aquí&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;Vista rápida del dispositivo&lt;/h1&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;350&quot; height=&quot;500&quot; src=&quot;/assets/images/dstike/partes.png&quot; /&gt;
+&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1 - Este botón, en caso de pulsarse 3 segundos, se encienden unas luces a modo de linterna, para apagarlo, se tiene que mantener pulsado otros 3 segundos.&lt;/li&gt;
+  &lt;li&gt;2 - En esta parte, hay un láser.&lt;/li&gt;
+  &lt;li&gt;3 - Esta es la parte donde se puede flashear el firmware del dispositivo, tiene un puerto USB y si lo conectamos a nuestra máquina Linux, siguiendo esta guía se puede hacer sin problema: &lt;a href=&quot;https://github.com/SpacehuhnTech/esp8266_deauther/wiki/Installation#flashing-the-firmware-bin-file&quot;&gt;Falshear Firmware&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;4 - En caso de pulsar este botón, se restablecerá el dispositivo a los valores de fábrica.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;En el lateral derecho, hay una rueda, con la cual se puede seleccionar lo que queremos hacer, lo veremos en el siguiente apartado del artículo.&lt;/p&gt;
+
+&lt;h1&gt;Opciones del dispositivo&lt;/h1&gt;
+
+&lt;p&gt;En el apartado de “&lt;b&gt;SCAN&lt;/b&gt;”, se pueden encontrar las siguientes opciones (Hay que tener en cuenta que este dispositivo, por ahora, solo puede escanear redes 2.4G):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Escaneo de Puntos de Acceso y clientes conectados a la red [&lt;b&gt;SCAN AP + ST&lt;/b&gt;]&lt;/li&gt;
+  &lt;li&gt;Escaneo únicamene de Puntos de Acceso [&lt;b&gt;SCAN APs&lt;/b&gt;]&lt;/li&gt;
+  &lt;li&gt;Escaneo únicamente de clientes conectados a la red [&lt;b&gt;SCAN Stations&lt;/b&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;350&quot; height=&quot;500&quot; src=&quot;/assets/images/dstike/scan_options.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;En el apartado de “&lt;b&gt;SELECT&lt;/b&gt;”, se puede seleccionar sobre que item router/cliente que se ha obtenido en la fase de escaneo se quiere realizar un ataque.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Selección de Puntos de Acceso [&lt;b&gt;APs&lt;/b&gt;]&lt;/li&gt;
+  &lt;li&gt;Selección de Clientes [&lt;b&gt;Stations&lt;/b&gt;]&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;Names&lt;/b&gt; (He estado investigando y no he encontrado el uso de esta opción, después de realizar varios escaneos esta opción sigue a 0.)&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;SSIDs&lt;/b&gt; (El uso de esta opción es igual a la primera de este apartado, he hecho pruebas y he creado redes con el DSTIKE y en caso de crearlo si que salen para seleccionar.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Únicamente con las 2 primeras opciones es suficiente para efectuar ataques, también en esta versión de DSTIKE está la opción de seleccionar todos los clientes y todos los puntos de acceso que se hayan escaneado.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;350&quot; height=&quot;500&quot; src=&quot;/assets/images/dstike/scan_options_1.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;En el apartado de “&lt;b&gt;ATTACK&lt;/b&gt;”, se puede elegir que tipo de ataque se va a efectuar.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ataque de deautenticación (En caso que no se seleccione ningún cliente, se utilizará la MAC Broadcast address -&amp;gt; FF:FF:FF:FF:FF:FF) [&lt;b&gt;DEAUTH&lt;/b&gt;]&lt;/li&gt;
+  &lt;li&gt;Beacon Flood Attack , este ataque consiste en crear diferentes puntos de acceso en un canal en concreto para saturar dicho canal y hacer que o bien la conexión sea lenta o bien que se desconecten los clientes. [&lt;b&gt;BEACON&lt;/b&gt;]&lt;/li&gt;
+  &lt;li&gt;Esta opción se supone que es para generar paquetes probe request/response, pero para dengar una conexión, con los 2 anteriores es suficinete, no le veo el uso a esta opción [&lt;b&gt;PROBE&lt;/b&gt;]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;350&quot; height=&quot;500&quot; src=&quot;/assets/images/dstike/attack_mode.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;En el apartado “&lt;b&gt;PACKET MONITOR&lt;/b&gt;” se pueden escanear los distintos canales, del 1 al 14, para ver si en la zona que se esta escaneando hay tráfico wifi o no. Hay que tener en cuena que DSTIKE no hace channel hopping de forma automática, si giramos la rueda, se cambiará de canal.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;350&quot; height=&quot;500&quot; src=&quot;/assets/images/dstike/packet_monitor.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;En el apartado “&lt;b&gt;CLOCK&lt;/b&gt;” se puede cambiar la hora y poner el modo reloj, para que se vea la hora.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img width=&quot;350&quot; height=&quot;500&quot; src=&quot;/assets/images/dstike/clock.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finamente, en el apartado “&lt;b&gt;LED&lt;/b&gt;”, en esta versión del DSTIKE, simplemente es un láser, según el vendedor, llega entre 50 y 100 metros.&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="script" /><category term="hardware hacking" /><category term="wireless" /><summary type="html">En este artículo, explico la utilidad del aparato DSTIKE Deauther v3 y todas sus funciones, también dejo el enlace de compra.</summary></entry><entry><title type="html">autoRPC</title><link href="http://localhost:4000/autoRPC/" rel="alternate" type="text/html" title="autoRPC" /><published>2021-10-18T00:00:00+02:00</published><updated>2021-10-18T00:00:00+02:00</updated><id>http://localhost:4000/autoRPC</id><content type="html" xml:base="http://localhost:4000/autoRPC/">&lt;h2 id=&quot;qué-es-autorpc&quot;&gt;¿Qué es autoRPC?&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;autoRPC&lt;/strong&gt; es una herramienta la cual automatiza la enumeración del protocolo RPC de Windows.&lt;/p&gt;
 
