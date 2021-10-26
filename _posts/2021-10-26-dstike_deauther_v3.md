@@ -29,8 +29,10 @@ Para acceder a la web de compra, pulsa [aquí](https://www.amazon.es/Seamuing-de
 * 2 - En esta parte, hay un láser.
 * 3 - Esta es la parte donde se puede flashear el firmware del dispositivo, tiene un puerto USB y si lo conectamos a nuestra máquina Linux, siguiendo esta guía se puede hacer sin problema: [Falshear Firmware](https://github.com/SpacehuhnTech/esp8266_deauther/wiki/Installation#flashing-the-firmware-bin-file)
 * 4 - En caso de pulsar este botón, se restablecerá el dispositivo a los valores de fábrica.
+* 5 - Es la pantalla donde se puede elegir lo que se quiere hacer con el DSTIKE
 
 En el lateral derecho, hay una rueda, con la cual se puede seleccionar lo que queremos hacer, lo veremos en el siguiente apartado del artículo.
+En el lateral izquierdo, se puede ver un puerto micro-usb y la batería del dispositivo, la batería se reparte en 4 pequeñas rayas, cada raya corresponde a un 25% de la batería.
 
 <h1>Opciones del dispositivo</h1>
 
@@ -80,4 +82,4 @@ En el apartado "<b>CLOCK</b>" se puede cambiar la hora y poner el modo reloj, pa
 
 Finamente, en el apartado "<b>LED</b>", en esta versión del DSTIKE, simplemente es un láser, según el vendedor, llega entre 50 y 100 metros.
 
-
+Por último a comentar sobre el DSTIKE, hay que decir que crea una red de forma automática, esta red se llama <b>pwned</b>, la contraseña por defecto es <b>deauther</b>, aunque se puede cambiar. Al conectarse desde otro dispositovo, si se accede al navegador y se busca google.es, debería redirigir de forma automática a la web del reloj, en esta web, se puede gestionar todo lo comentado anteriormente des del otro terminal. Adicionalmente, únicamente desde la web, se puede cambiar la MAC (cosa que no se puede desde el reloj), recomiendo cambiar la MAC como buena práctica, (con el comando <b>mcchanger -l</b> hay una larga lista de MAC's, recomiendo utilizar una de ese listado).
