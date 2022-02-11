@@ -1,4 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-26T20:45:01+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">DSTIKE deauther V3</title><link href="http://localhost:4000/dstike_deauther_v3/" rel="alternate" type="text/html" title="DSTIKE deauther V3" /><published>2021-10-26T00:00:00+02:00</published><updated>2021-10-26T00:00:00+02:00</updated><id>http://localhost:4000/dstike_deauther_v3</id><content type="html" xml:base="http://localhost:4000/dstike_deauther_v3/">&lt;h2 id=&quot;qué-es-dstike-deauther&quot;&gt;¿Qué es DSTIKE Deauther?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-02-11T23:56:03+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">e1abrador.io</title><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><entry><title type="html">DNS Rebind</title><link href="http://localhost:4000/dnsRebind/" rel="alternate" type="text/html" title="DNS Rebind" /><published>2022-02-11T00:00:00+01:00</published><updated>2022-02-11T00:00:00+01:00</updated><id>http://localhost:4000/dnsRebind</id><content type="html" xml:base="http://localhost:4000/dnsRebind/">&lt;p&gt;Este ataque va indirectamente vinculado al SSRF, ya que aunque son ataques completamente distintos, concatenándolo con el SSRF se puede ganar una mayor criticidad, en este ataque, se busca el fallo en el DNS para que, (explicado a alto nivel) después de X número de requests que se envíen desde X número de IPs (1 o varias), el servidor DNS nos responda con una IP distinta a la que debería responder.&lt;/p&gt;
+
+&lt;p&gt;Si hago esto en un SSRF:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;example.com/test.php?url=http://127.0.0.1:80
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Aunque el puerto 80 esté abierto internamente y aunque la IP sea correcta, lo mas probable es que el WAF bloquee la request ya que “127.0.0.1” estará en la blacklist (se puede intentar bypassear de diferentes formas, pero ahora hablaremos del DNS Rebinding).
+La idea de esto, es que ejecutará la request al dominio example.com desde nuestra IP, por lo que no tendremos acceso. Pues bien, con el DNS Rebinding se puede probar si el servidor es vulnerable, voy a poner un ejemplo práctico (únicamente testeando el dominio):&lt;/p&gt;
+
+&lt;p&gt;Si hacemos una request al dominio &lt;b&gt;make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms&lt;/b&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms                                   
+&lt;span class=&quot;go&quot;&gt;make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms has address 169.254.169.254
+Host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms not found: 3(NXDOMAIN)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Sale que la IP es la 169…, esto es correcto, pero, si se hacen mas requests seguidas a este dominio, se puede intentar que salga una IP distinta:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms                                   
+&lt;span class=&quot;go&quot;&gt;make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms has address 169.254.169.254
+Host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms not found: 3(NXDOMAIN)
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms                                   
+&lt;span class=&quot;go&quot;&gt;make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms has address 169.254.169.254
+Host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms not found: 3(NXDOMAIN)
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms                                   
+&lt;span class=&quot;go&quot;&gt;make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms has address 169.254.169.254
+Host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms not found: 3(NXDOMAIN)
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms                                   
+&lt;span class=&quot;go&quot;&gt;make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms has address 169.254.169.254
+Host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms not found: 3(NXDOMAIN)
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms                                   
+&lt;span class=&quot;go&quot;&gt;make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms has address 1.2.3.4
+Host make-1.2.3.4-rebind-169.254.169.254-rr.1u.ms not found: 3(NXDOMAIN)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En la última petición DNS ha cambiado la IP, pues bien, si se hace el SSRF justo cuando la IP cambia a 1.2.3.4 (o a la que corresponda), la request ya no se interpretará desde la IP del atacante sino de la del propio servidor remoto, en este caso, si tendríamos acceso a el contenido desde el navegador que estemos buscando a través del SSRF (archivos, enumeración de puertos internos/IPs internas, etc).&lt;/p&gt;
+
+&lt;p&gt;Sabiendo esto en caso del SSRF, la mejor opción es enviarlo al intruder para ver si, por ejemplo, después de 100 requests, el servidor responde con una longitud/código de estado distinto.&lt;/p&gt;
+
+&lt;p&gt;Para probar el servidor sin necesidad de utilizar el comando host X veces manualmente o probarlo a través de un SSRF, he creado un script en bash muy simple que ayuda a automatizar el testeo del DNS:&lt;/p&gt;
+
+&lt;p&gt;Ejecución del script:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;chmod +x testDnsRebind.sh
+./testDnsRebind.sh google.com 10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;tests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;seq &lt;/span&gt;1 &lt;span class=&quot;nv&quot;&gt;$tests&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+	&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;host_ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;host &lt;span class=&quot;nv&quot;&gt;$domain&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;address | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $NF}'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$host_ip&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;wait&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para limpiar el output, el script mostrará únicamente la IP con la que responde el servidor y 1 sola vez todas las IPs que se obtengan en el output.&lt;/p&gt;</content><author><name>Eric Labrador</name><email>e.l.s.3334@gmail.com</email></author><category term="dns" /><category term="DNS" /><summary type="html">En este artículo, explico que es el DNS Rebind y como explotarlo.</summary></entry><entry><title type="html">DSTIKE deauther V3</title><link href="http://localhost:4000/dstike_deauther_v3/" rel="alternate" type="text/html" title="DSTIKE deauther V3" /><published>2021-10-26T00:00:00+02:00</published><updated>2021-10-26T00:00:00+02:00</updated><id>http://localhost:4000/dstike_deauther_v3</id><content type="html" xml:base="http://localhost:4000/dstike_deauther_v3/">&lt;h2 id=&quot;qué-es-dstike-deauther&quot;&gt;¿Qué es DSTIKE Deauther?&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;DSTIKE Deauther&lt;/strong&gt; es una herramienta, entre otras, que sale en la serie de Mr Robot, este dispositivo se utiliza para bloquear y denegar conexiones de redes wifi.&lt;/p&gt;
 

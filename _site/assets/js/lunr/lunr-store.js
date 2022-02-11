@@ -38,4 +38,9 @@ var store = [{
         "excerpt":"¿Qué es DSTIKE Deauther? DSTIKE Deauther es una herramienta, entre otras, que sale en la serie de Mr Robot, este dispositivo se utiliza para bloquear y denegar conexiones de redes wifi. Para acceder a la web de compra, pulsa aquí Vista rápida del dispositivo 1 - Este botón, en caso...","categories": ["script"],
         "tags": ["hardware hacking","wireless"],
         "url": "http://localhost:4000/dstike_deauther_v3/",
-        "teaser":null}]
+        "teaser":null},{
+        "title": "DNS Rebind",
+        "excerpt":"Este ataque va indirectamente vinculado al SSRF, ya que aunque son ataques completamente distintos, concatenándolo con el SSRF se puede ganar una mayor criticidad, en este ataque, se busca el fallo en el DNS para que, (explicado a alto nivel) después de X número de requests que se envíen desde...","categories": ["dns"],
+        "tags": ["DNS"],
+        "url": "http://localhost:4000/dnsRebind/",
+        "teaser":"http://localhost:4000/assets/images/dnsrebind/dns.jpg"}]
